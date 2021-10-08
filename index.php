@@ -38,7 +38,7 @@
         </div>
 
         <div class="link-right my-4">
-            <a href="create.php" class="btn btn-info text-white"><i class="fas fa-plus"></i> Create</a>
+            <a href="create.php" class="btn btn-info text-white"><i class="fas fa-plus"></i> ยืม</a>
         </div>
         <?php if (mysqli_num_rows($result)) { ?>
             <div class="table-responsive">
