@@ -34,7 +34,7 @@
         <?php endif ?>
 
         <div class="my-4">
-            <h4 class="display-4 text-center">ระบบสารสนเทศเพื่อจัดการข้อมูลวัสดุและครุภัณฑ์ Lucky Lucky</h4>
+            <h4 class="display-4 text-center">ระบบสารสนเทศเพื่อจัดการข้อมูลวัสดุและครุภัณฑ์</h4>
         </div>
 
         <div class="link-right my-4">
