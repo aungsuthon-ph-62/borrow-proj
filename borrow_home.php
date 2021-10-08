@@ -1,4 +1,4 @@
-<?php include "php/read_borrow_home"; ?>
+<?php include "php/read_borrow_home.php"; ?>
 <?php include "resource/env/header.php"; ?>
 
 
