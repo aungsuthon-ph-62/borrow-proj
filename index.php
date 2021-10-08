@@ -1,44 +1,64 @@
- 
-<?php 
-session_start(); 
-$page = 'index';
-//unset($_SESSION["status"]);
+<?php include("resource/env/header.php") ?>
 
-?> 
-<?php 
-include "header.php";
-include  "fucntion_query.php";
-?>
+<body class="bg-primary">
+    <div class="container d-flex justify-content-center align-items-center p-5">
+        <form class="bg-light border shadow p-5 rounded" action="php/register.php" method="post">
+            <div class="my-4">
+                <h4 class="display-4 text-center">เข้าสู่ระบบ</h4>
+            </div>
 
-<body>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb fs-5">
+                    <li class="breadcrumb-item active">Login</li>
+                </ol>
+            </nav>
 
-  <!-- Navigation -->
-  <?php include "navbar.php"; ?>
-  <!-- Page Content -->
+            <hr class="my-4">
 
-  <!-- <div class="container">
-    <div class="row">
-      <div class="col-lg-12 text-center">
-        <img src="images/banner.jpg" class="img-fluid" alt="Responsive image">
-      </div>
-    </div>
+            <?php if (isset($_GET['success_create'])) { ?>
+                <?php
+                echo "<script>";
+                echo "
+						Swal.fire({
+							icon: 'success',
+							title: 'Create Success!',
+							showConfirmButton: false,
+							timer: 2500
+						})
+					";
+                echo "</script>";
+                ?>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <?php echo $_GET['success_create']; ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <?php } ?>
 
-    <div class="jumbotron">
+            <div class="row">
+                <div class="col-sm-12 col-md-12">
+                    <div class=" form-group mb-4">
+                        <label for="price">อีเมลล์</label>
+                        <input type="email" class="form-control" id="email" name="email" value="<?php if (isset($_GET['email'])) {
+                                                                                                    echo ($_GET['email']);
+                                                                                                } ?>" placeholder="กรอกอีเมลล์">
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12">
+                    <div class="form-group mb-4">
+                        <label for="quantity">พาสเวิร์ด</label>
+                        <input type="password" class="form-control" id="password" name="password" value="<?php if (isset($_GET['password'])) {
+                                                                                                                echo ($_GET['password']);
+                                                                                                            } ?>" placeholder="กรอกพาสเวิร์ด">
+                    </div>
+                </div>
+            </div>
 
-      <div class="row">
-         
-      </div>
-    </div>
-  </div> -->
+            <div class="my-4">
+                <button type="submit" class="btn btn-success" name="login"><i class="fas fa-plus"></i> ล็อกอิน!</button>
+                <a href="register.php" class="btn btn-info text-light"> <i class="fas fa-arrow-left"></i> สมัครสมาชิก</a>
+            </div>
+        </form>
 
-  <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/popper/popper.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-
-<footer>
-Powered By:Narinthon,Chiraphat,Aungsuthon,Wuttichai  &reg;
-</footer>
 </body>
 
 </html>
