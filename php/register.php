@@ -68,7 +68,7 @@
 
             $_SESSION['sname'] = $sname;
             $_SESSION['success'] = "สมัครสมาชิกสำเร็จ!, คุณได้ทำการล็อกอินแล้ว";
-            header('location: ../home.php');
+            header('location: ../index.php');
         }
     }
 
