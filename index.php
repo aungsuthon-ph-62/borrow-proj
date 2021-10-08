@@ -34,11 +34,11 @@
         <?php endif ?>
 
         <div class="my-4">
-            <h4 class="display-4 text-center">lucky</h4>
+            <h4 class="display-4 text-center">ระบบสารสนเทศเพื่อจัดการข้อมูลวัสดุและครุภัณฑ์</h4>
         </div>
 
         <div class="link-right my-4">
-            <a href="create.php" class="btn btn-info text-white"><i class="fas fa-plus"></i>Create - ยืม</a>
+            <a href="create.php" class="btn btn-info text-white"><i class="fas fa-plus"></i> ยืม</a>
         </div>
         <?php if (mysqli_num_rows($result)) { ?>
             <div class="table-responsive">
