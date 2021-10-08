@@ -54,8 +54,8 @@
 								</td>
 								<td class="text-center">
 									<div class="d-grid gap-2 px-3">
-										<a href="update.php?id=<?= $rows['b_id'] ?>" class="btn btn-success btn-sm"> <i class="fas fa-edit"></i> Update</a>
-										<a href="php/delete.php?id=<?= $rows['b_id'] ?>" class="btn btn-danger btn-sm"> <i class="fas fa-minus-circle"></i> Delete</a>
+										<a href="update.php?id=<?= $rows['b_id'] ?>" class="btn btn-success btn-md"> <i class="fas fa-edit"></i> Update</a>
+										<a href="php/delete.php?id=<?= $rows['b_id'] ?>" class="btn btn-danger btn-md"> <i class="fas fa-minus-circle"></i> Delete</a>
 									</div>
 								</td>
 							</tr>

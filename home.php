@@ -1,12 +1,38 @@
 <?php include "php/read.php"; ?>
 <?php include "resource/env/header.php"; ?>
 
+<?php 
+
+    session_start();
+
+    if (!isset($_SESSION['sname'])) {
+        $_SESSION['msg'] = "คุณต้องล็อกอินก่อน!!!";
+        header('location: index.php');
+    }
+
+    if (isset($_GET['logout'])) {
+        session_destroy();
+        unset($_SESSION['sname']);
+        header('location: index.php');
+    }
+
+
+?>
 
 
 <body>
     <?php include "resource/env/navbar.php"; ?>
 
     <div class="container">
+        <!-- Notify msg -->
+        <?php if(isset($_SESSION['success'])) : ?>
+            <div class="alert alert-success alert-dismissible fade show my-4" role="alert">
+					<?php echo $_SESSION['success']; ?>
+					<?php unset($_SESSION['success']); ?>
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+        <?php endif ?>
+
         <div class="my-4">
             <h4 class="display-4 text-center">ระบบสารสนเทศเพื่อจัดการข้อมูลวัสดุและครุภัณฑ์</h4>
         </div>
@@ -75,8 +101,8 @@
                                 <td class="text-center"><?php echo $rows['img']; ?></td>
                                 <td class="text-center">
                                     <div class="d-grid gap-2 px-3">
-                                        <a href="update.php?id=<?= $rows['id'] ?>" class="btn btn-success btn-sm"> <i class="fas fa-edit"></i> Update</a>
-                                        <a href="php/delete.php?id=<?= $rows['id'] ?>" class="btn btn-danger btn-sm"> <i class="fas fa-minus-circle"></i> Delete</a>
+                                        <a href="update.php?id=<?= $rows['id'] ?>" class="btn btn-success btn-md"> <i class="fas fa-edit"></i> Update</a>
+                                        <a href="php/delete.php?id=<?= $rows['id'] ?>" class="btn btn-danger btn-md"> <i class="fas fa-minus-circle"></i> Delete</a>
                                     </div>
                                 </td>
                             </tr>
