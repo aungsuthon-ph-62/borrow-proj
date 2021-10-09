@@ -21,6 +21,8 @@
             $stype = "ปี 3";
         } elseif ($stype == 4) {
             $stype = "ปี 4";
+        } elseif ($stype == 0) {
+            header("Location: ../register.php?error=Select is required!");
         } else {
             header("Location: ../register.php?error=Select is required!");
         }
@@ -37,6 +39,8 @@
             header("Location: ../register.php?error=lname is required&$user_data");
         } else if (empty($student_id)) {
             header("Location: ../register.php?error=Student ID is required&$user_data");
+        } else if (empty($stype)) {
+            header("Location: ../register.php?error=Select is required&$user_data");
         } else {
             header("Location: ../register.php?error=unknown error occurred&$user_data");
         }
@@ -61,14 +65,18 @@
         }
 
         if (count($errors) == 0) {
-            $password = md5($password);
+            $password_enc = md5($password);
 
-            $sql = "INSERT INTO student (email, password, sname, lname, student_id, tel, stype)
-                    VALUES ('$email', '$password', '$sname', '$lname', '$student_id', '$tel', '$stype')";
+            $sql = "INSERT INTO student (email, password, sname, lname, student_id, tel, stype, status)
+                    VALUES ('$email', '$password_enc', '$sname', '$lname', '$student_id', '$tel', '$stype', '0')";
+            $q_result = mysqli_query($conn, $sql);
 
-            $_SESSION['sname'] = $sname;
-            $_SESSION['success'] = "สมัครสมาชิกสำเร็จ!, คุณได้ทำการล็อกอินแล้ว";
-            header('location: ../index.php');
+            $_SESSION['inp_email'] = $email;
+            $_SESSION['success_register'] = "สมัครสมาชิกสำเร็จ!";
+            header('location: ../login.php');
+        } else {
+            array_push($errors, "Email is already exists");
+            header('location: ../register.php?error=Email is already exists');
         }
     }
 
