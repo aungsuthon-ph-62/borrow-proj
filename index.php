@@ -1,40 +1,49 @@
 <?php include "php/read.php"; ?>
 <?php include "resource/env/header.php"; ?>
 
-<?php 
+<?php
 
-    session_start();
+session_start();
 
-    if (!isset($_SESSION['sname'])) {
-        $_SESSION['msg'] = "คุณต้องล็อกอินก่อน!!!";
-        header('location: index.php');
-    }
-
-    if (isset($_GET['logout'])) {
-        session_destroy();
-        unset($_SESSION['sname']);
-        header('location: index.php');
-    }
-
-
+if (!$_SESSION['id']) {
+    $_SESSION['msg'] = "คุณต้องเข้าสู่ระบบก่อน!";
+    header("location: login.php");
+}
 ?>
 
 
 <body>
-    <?php include "resource/env/navbar.php"; ?>
+    <?php 
+        include "resource/navbar.php"
+    ?>
 
     <div class="container">
         <!-- Notify msg -->
-        <?php if(isset($_SESSION['success'])) : ?>
-            <div class="alert alert-success alert-dismissible fade show my-4" role="alert">
-					<?php echo $_SESSION['success']; ?>
-					<?php unset($_SESSION['success']); ?>
-					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-			</div>
+        <?php if (isset($_SESSION['success_login']) && (isset($_SESSION['user'])))  : ?>
+            
+                <div class="alert alert-success alert-dismissible fade show my-4" role="alert">
+                    <script>
+                        Swal.fire({
+                            icon: 'success',
+                            title: '<?php echo $_SESSION['success_login']; ?>',
+                            text: 'ยินดีต้อนรับ! คุณ <?php echo $_SESSION['user']; ?>',
+                            showConfirmButton: true,
+                            timer: '4000'
+                        })
+                    </script>
+                    <?php echo $_SESSION['success_login']; ?>
+                    <?php echo $_SESSION['user']; ?>
+                    <?php unset($_SESSION['success_login']); ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+
         <?php endif ?>
 
+        <!-- Notify msg -->
+
+        
         <div class="my-4">
-            <h4 class="display-4 text-center">ระบบสารสนเทศเพื่อจัดการข้อมูลวัสดุและครุภัณฑ์</h4>
+            <h4 class="display-4 text-center">ระบบสารสนเทศเพื่อจัดการข้อมูลวัสดุและครุภัณฑ์</h4>  
         </div>
 
         <div class="link-right my-4">
@@ -69,7 +78,7 @@
                                 <td class="text-center"><?= $rows['device_no'] ?></td>
                                 <td class="text-center"><?php echo $rows['device_cat_name']; ?></td>
                                 <td class="text-center">
-                                <?php
+                                    <?php
                                     $r = $rows['device_type'];
                                     if ($r == 1) {
                                         echo "วัสดุ";
