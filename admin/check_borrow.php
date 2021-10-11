@@ -1,5 +1,5 @@
 <?php
-include('source/php/read_approve.php');
+include('source/php/read_check_borrow.php');
 include('source/env/header.php');
 session_start();
 if (!$_SESSION['auth']) {
@@ -37,12 +37,12 @@ if (!$_SESSION['auth']) {
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">ตรวจสอบอนุมัติ</h1>
+                            <h1 class="m-0">ตรวจสอบการยืม&คืน</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="index">หน้าแรก</a></li>
-                                <li class="breadcrumb-item active">ตรวจสอบอนุมัติ</li>
+                                <li class="breadcrumb-item active">ตรวจสอบการยืม&คืน</li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -56,7 +56,7 @@ if (!$_SESSION['auth']) {
                     <!-- TABLE-->
                     <div class="card">
                         <div class="card-header border-transparent">
-                            <h3 class="card-title">รายการรออนุมัติทั้งหมด</h3>
+                            <h3 class="card-title">รายการยืม&คืนทั้งหมด</h3>
 
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -75,6 +75,7 @@ if (!$_SESSION['auth']) {
                                                 <th>รหัสอุปกรณ์</th>
                                                 <th>รหัสนักศึกษา</th>
                                                 <th>วันที่ยืม</th>
+                                                <th>ผู้อนุมัติ</th>
                                                 <th>วันที่คืน</th>
                                                 <th>สถานะ</th>
                                                 <th>จัดการ</th>
@@ -90,6 +91,7 @@ if (!$_SESSION['auth']) {
                                                     <td class="text-center"><?= $rows['device_no'] ?></td>
                                                     <td class="text-center"><?php echo $rows['student_id'] ?></td>
                                                     <td class="text-center"><?php echo $rows['borrow_date']; ?></td>
+                                                    <td class="text-center"><?php echo $rows['t_name']; ?></td>
                                                     <td class="text-center"><?php echo $rows['return_date']; ?></td>
                                                     <td class="text-center">
                                                         <?php
@@ -111,7 +113,7 @@ if (!$_SESSION['auth']) {
                                                     </td>
                                                     <td class="text-center">
                                                         <div class="d-grid gap-2 px-3">
-                                                            <a href="update.php?id=<?= $rows['b_id'] ?>" class="btn btn-success "> <i class="fas fa-edit"></i> อนุมัติ</a>
+                                                            <a href="update_check_borrow.php?id=<?= $rows['b_id'] ?>" class="btn btn-warning"> <i class="fas fa-edit"></i> แก้ไข</a>
                                                             <a href="php/delete.php?id=<?= $rows['b_id'] ?>" class="btn btn-danger"> <i class="fas fa-minus-circle"></i> ลบ</a>
                                                         </div>
                                                     </td>
