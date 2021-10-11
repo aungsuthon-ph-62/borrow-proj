@@ -3,7 +3,7 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^([^\.]+)$ $1.php [NC,L]
 
 RewriteRule ^home index.php
-RewriteRule ^admin adminlte/index2.html 
+
 
 
 

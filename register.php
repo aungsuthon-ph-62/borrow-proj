@@ -37,13 +37,13 @@
                 <div class="col-sm-12 col-md-6">
                     <div class=" form-group mb-4">
                         <label for="price">อีเมลล์</label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="กรอกอีเมลล์">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="กรอกอีเมลล์" required>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-6">
                     <div class="form-group mb-4">
                         <label for="quantity">พาสเวิร์ด</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="กรอกพาสเวิร์ด">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="กรอกพาสเวิร์ด" required>
                     </div>
                 </div>
             </div>
@@ -52,13 +52,13 @@
                 <div class="col-md-6">
                     <div class="form-group mb-4">
                         <label for="name">ชื่อจริง</label>
-                        <input type="text" class="form-control" id="sname" name="sname" placeholder="กรอกชื่อจริง">
+                        <input type="text" class="form-control" id="sname" name="sname" placeholder="กรอกชื่อจริง" required>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group mb-4">
                         <label for="name">นามสกุล</label>
-                        <input type="text" class="form-control" id="lname" name="lname" placeholder="กรอกนามสกุล">
+                        <input type="text" class="form-control" id="lname" name="lname" placeholder="กรอกนามสกุล" required>
                     </div>
 
                 </div>
@@ -68,13 +68,13 @@
                 <div class="col-md-6">
                     <div class="form-group mb-4">
                         <label for="info">รหัสนักศึกษา</label>
-                        <input type="text" class="form-control" id="student_id" name="student_id" placeholder="กรอกรหัสนักศึกษา">
+                        <input type="text" class="form-control" id="student_id" name="student_id" placeholder="กรอกรหัสนักศึกษา" required>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group mb-4">
                         <label for="info">เบอร์โทรศัพท์</label>
-                        <input type="text" class="form-control" id="tel" name="tel" placeholder="กรอกเบอร์โทรศัพท์">
+                        <input type="text" class="form-control" id="tel" name="tel" placeholder="กรอกเบอร์โทรศัพท์" required>
                     </div>
                 </div>
             </div>
@@ -93,7 +93,7 @@
 
             <div class="my-4">
                 <button type="submit" class="btn btn-primary" name="register"><i class="fas fa-plus"></i> Create</button>
-                <a href="index.php" class="btn btn-warning"> <i class="fas fa-arrow-left"></i> Back</a>
+                <a href="login" class="btn btn-warning"> <i class="fas fa-arrow-left"></i> Back</a>
             </div>
 
         </form>
