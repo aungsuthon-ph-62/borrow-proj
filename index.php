@@ -5,19 +5,32 @@
 
 session_start();
 
-if (!$_SESSION['id']) {
+if (!$_SESSION['auth']) {
     $_SESSION['msg'] = "คุณต้องเข้าสู่ระบบก่อน!";
-    header("location: login.php");
-}
+    header("location: login");
+} else {
+    $currentTime = time();
+        if($currentTime > $_SESSION['expire']) 
+        {
+          session_unset();
+          session_destroy();
+          header('location: login');
+        }
+      }
 ?>
 
 
-<body>
+<body class="dark-bg">
+
+    <!-- Navbar -->
     <?php 
         include "resource/navbar.php"
     ?>
+    <!-- ./Navbar -->
+    
 
     <div class="container">
+
         <!-- Notify msg -->
         <?php if (isset($_SESSION['success_login']) && (isset($_SESSION['user'])))  : ?>
             
@@ -38,20 +51,19 @@ if (!$_SESSION['id']) {
                 </div>
 
         <?php endif ?>
-
-        <!-- Notify msg -->
+        <!-- ./Notify msg -->
 
         
         <div class="my-4">
-            <h4 class="display-4 text-center">ระบบสารสนเทศเพื่อจัดการข้อมูลวัสดุและครุภัณฑ์</h4>  
+            <h4 class="display-4 text-white text-center">ระบบสารสนเทศเพื่อจัดการข้อมูลวัสดุและครุภัณฑ์</h4>  
         </div>
 
         <div class="link-right my-4">
             <a href="create.php" class="btn btn-info text-white"><i class="fas fa-plus"></i> ยืม</a>
         </div>
         <?php if (mysqli_num_rows($result)) { ?>
-            <div class="table-responsive">
-                <table class="table  table-striped table-hover border border-dark border-3 rounded shadow">
+            <div class="table-responsive rounded">
+                <table class="table table-hover table-borderless">
                     <thead class="table-dark">
                         <tr>
                             <th scope="col" class="text-center">ลำดับ</th>
@@ -95,7 +107,7 @@ if (!$_SESSION['id']) {
                                     $r = $rows['status'];
                                     if ($r == 0) {
                                         echo "โปรดแก้ไขข้อมูล";
-                                    } elseif ($r == 2) {
+                                    } elseif ($r == 1) {
                                         echo "ว่าง";
                                     } elseif ($r == 2) {
                                         echo "ไม่ว่าง";
@@ -109,9 +121,9 @@ if (!$_SESSION['id']) {
                                 <td class="text-center"><?php echo $rows['room']; ?></td>
                                 <td class="text-center"><?php echo $rows['img']; ?></td>
                                 <td class="text-center">
-                                    <div class="d-grid gap-2 px-3">
-                                        <a href="update.php?id=<?= $rows['id'] ?>" class="btn btn-success btn-md"> <i class="fas fa-edit"></i> Update</a>
-                                        <a href="php/delete.php?id=<?= $rows['id'] ?>" class="btn btn-danger btn-md"> <i class="fas fa-minus-circle"></i> Delete</a>
+                                    <div class="d-grid gap-2">
+                                        <a href="update.php?id=<?= $rows['id'] ?>" class="btn btn-success "> <i class="fas fa-edit"></i> Update</a>
+                                        <a href="php/delete.php?id=<?= $rows['id'] ?>" class="btn btn-danger "> <i class="fas fa-minus-circle"></i> Delete</a>
                                     </div>
                                 </td>
                             </tr>
