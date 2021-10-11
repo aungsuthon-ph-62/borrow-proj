@@ -17,41 +17,33 @@
 
             <hr class="my-4">
 
-            <?php if (isset($_GET['error'])) { ?>
-                <?php
-                echo "<script>";
-                echo "
-					 Swal.fire({
-						 icon: 'error',
-						 title: 'Oops...!',
-						 text: 'Something went wrong!',
-						 showConfirmButton: true,
-						 timer: '2500'
-					 })
-				 ";
-                echo "</script>";
-                ?>
+            <?php if (isset($_GET['error'])) : ?>
+                <script>
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...!',
+                        text: '<?php echo $_GET['error']; ?>',
+                        showConfirmButton: true,
+                        timer: '2500'
+                    })
+                </script>
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <?php echo $_GET['error']; ?>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
-            <?php } ?>
+            <?php endif ?>
 
             <div class="row">
                 <div class="col-sm-12 col-md-6">
                     <div class=" form-group mb-4">
                         <label for="price">อีเมลล์</label>
-                        <input type="email" class="form-control" id="email" name="email" value="<?php if (isset($_GET['email'])) {
-                                                                                                    echo ($_GET['email']);
-                                                                                                } ?>" placeholder="กรอกอีเมลล์">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="กรอกอีเมลล์" required>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-6">
                     <div class="form-group mb-4">
                         <label for="quantity">พาสเวิร์ด</label>
-                        <input type="password" class="form-control" id="password" name="password" value="<?php if (isset($_GET['password'])) {
-                                                                                                                echo ($_GET['password']);
-                                                                                                            } ?>" placeholder="กรอกพาสเวิร์ด">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="กรอกพาสเวิร์ด" required>
                     </div>
                 </div>
             </div>
@@ -60,17 +52,13 @@
                 <div class="col-md-6">
                     <div class="form-group mb-4">
                         <label for="name">ชื่อจริง</label>
-                        <input type="text" class="form-control" id="sname" name="sname" value="<?php if (isset($_GET['sname'])) {
-                                                                                                    echo ($_GET['sname']);
-                                                                                                } ?>" placeholder="กรอกชื่อจริง">
+                        <input type="text" class="form-control" id="sname" name="sname" placeholder="กรอกชื่อจริง" required>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group mb-4">
                         <label for="name">นามสกุล</label>
-                        <input type="text" class="form-control" id="lname" name="lname" value="<?php if (isset($_GET['lname'])) {
-                                                                                                    echo ($_GET['lname']);
-                                                                                                } ?>" placeholder="กรอกนามสกุล">
+                        <input type="text" class="form-control" id="lname" name="lname" placeholder="กรอกนามสกุล" required>
                     </div>
 
                 </div>
@@ -80,27 +68,21 @@
                 <div class="col-md-6">
                     <div class="form-group mb-4">
                         <label for="info">รหัสนักศึกษา</label>
-                        <input type="text" class="form-control" id="student_id" name="student_id" value="<?php if (isset($_GET['student_id'])) {
-                                                                                                                echo ($_GET['student_id']);
-                                                                                                            }
-                                                                                                            ?>" placeholder="กรอกรหัสนักศึกษา">
+                        <input type="text" class="form-control" id="student_id" name="student_id" placeholder="กรอกรหัสนักศึกษา" required>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group mb-4">
                         <label for="info">เบอร์โทรศัพท์</label>
-                        <input type="text" class="form-control" id="tel" name="tel" value="<?php if (isset($_GET['tel'])) {
-                                                                                                echo ($_GET['tel']);
-                                                                                            }
-                                                                                            ?>" placeholder="กรอกเบอร์โทรศัพท์">
+                        <input type="text" class="form-control" id="tel" name="tel" placeholder="กรอกเบอร์โทรศัพท์" required>
                     </div>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-12">
-                    <select class="form-select" aria-label="sel-type" name="sel-type">
-                        <option selected>กรุณาเลือกชั้นปี</option>
+                    <label for="sel-type">กรุณาเลือกชั้นปี</label>
+                    <select class="form-select" aria-label="sel-type" name="sel-type" required>
                         <option value="1">ปี 1</option>
                         <option value="2">ปี 2</option>
                         <option value="3">ปี 3</option>
@@ -111,7 +93,7 @@
 
             <div class="my-4">
                 <button type="submit" class="btn btn-primary" name="register"><i class="fas fa-plus"></i> Create</button>
-                <a href="index.php" class="btn btn-warning"> <i class="fas fa-arrow-left"></i> Back</a>
+                <a href="login" class="btn btn-warning"> <i class="fas fa-arrow-left"></i> Back</a>
             </div>
 
         </form>

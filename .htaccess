@@ -1,5 +1,9 @@
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^([^\.]+)$ $1.php [NC,L]
-RewriteRule ^profile/([^\.]+)?$ /register.php?error=$1 [L]
+
+RewriteRule ^home index.php
+
+
+
 

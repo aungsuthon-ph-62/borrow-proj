@@ -1,48 +1,69 @@
 <?php include "php/read.php"; ?>
 <?php include "resource/env/header.php"; ?>
 
-<?php 
+<?php
 
-    session_start();
+session_start();
 
-    if (!isset($_SESSION['sname'])) {
-        $_SESSION['msg'] = "คุณต้องล็อกอินก่อน!!!";
-        header('location: index.php');
-    }
-
-    if (isset($_GET['logout'])) {
-        session_destroy();
-        unset($_SESSION['sname']);
-        header('location: index.php');
-    }
-
-
+if (!$_SESSION['auth']) {
+    $_SESSION['msg'] = "คุณต้องเข้าสู่ระบบก่อน!";
+    header("location: login");
+} else {
+    $currentTime = time();
+        if($currentTime > $_SESSION['expire']) 
+        {
+          session_unset();
+          session_destroy();
+          header('location: login');
+        }
+      }
 ?>
 
 
-<body>
-    <?php include "resource/env/navbar.php"; ?>
+<body class="dark-bg">
+
+    <!-- Navbar -->
+    <?php 
+        include "resource/navbar.php"
+    ?>
+    <!-- ./Navbar -->
+    
 
     <div class="container">
-        <!-- Notify msg -->
-        <?php if(isset($_SESSION['success'])) : ?>
-            <div class="alert alert-success alert-dismissible fade show my-4" role="alert">
-					<?php echo $_SESSION['success']; ?>
-					<?php unset($_SESSION['success']); ?>
-					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-			</div>
-        <?php endif ?>
 
+        <!-- Notify msg -->
+        <?php if (isset($_SESSION['success_login']) && (isset($_SESSION['user'])))  : ?>
+            
+                <div class="alert alert-success alert-dismissible fade show my-4" role="alert">
+                    <script>
+                        Swal.fire({
+                            icon: 'success',
+                            title: '<?php echo $_SESSION['success_login']; ?>',
+                            text: 'ยินดีต้อนรับ! คุณ <?php echo $_SESSION['user']; ?>',
+                            showConfirmButton: true,
+                            timer: '4000'
+                        })
+                    </script>
+                    <?php echo $_SESSION['success_login']; ?>
+                    <?php echo $_SESSION['user']; ?>
+                    <?php unset($_SESSION['success_login']); ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+
+        <?php endif ?>
+        <!-- ./Notify msg -->
+
+        
         <div class="my-4">
-            <h4 class="display-4 text-center">lucky</h4>
+            <h4 class="display-4 text-white text-center">ระบบสารสนเทศเพื่อจัดการข้อมูลวัสดุและครุภัณฑ์</h4>  
         </div>
 
         <div class="link-right my-4">
-            <a href="create.php" class="btn btn-info text-white"><i class="fas fa-plus"></i> Create</a>
+            <a href="create.php" class="btn btn-info text-white"><i class="fas fa-plus"></i> ยืม</a>
         </div>
         <?php if (mysqli_num_rows($result)) { ?>
-            <div class="table-responsive">
-                <table class="table  table-striped table-hover border border-dark border-3 rounded shadow">
+            <div class="table-responsive rounded">
+                <table class="table table-hover table-borderless">
                     <thead class="table-dark">
                         <tr>
                             <th scope="col" class="text-center">ลำดับ</th>
@@ -69,7 +90,7 @@
                                 <td class="text-center"><?= $rows['device_no'] ?></td>
                                 <td class="text-center"><?php echo $rows['device_cat_name']; ?></td>
                                 <td class="text-center">
-                                <?php
+                                    <?php
                                     $r = $rows['device_type'];
                                     if ($r == 1) {
                                         echo "วัสดุ";
@@ -86,7 +107,7 @@
                                     $r = $rows['status'];
                                     if ($r == 0) {
                                         echo "โปรดแก้ไขข้อมูล";
-                                    } elseif ($r == 2) {
+                                    } elseif ($r == 1) {
                                         echo "ว่าง";
                                     } elseif ($r == 2) {
                                         echo "ไม่ว่าง";
@@ -100,9 +121,9 @@
                                 <td class="text-center"><?php echo $rows['room']; ?></td>
                                 <td class="text-center"><?php echo $rows['img']; ?></td>
                                 <td class="text-center">
-                                    <div class="d-grid gap-2 px-3">
-                                        <a href="update.php?id=<?= $rows['id'] ?>" class="btn btn-success btn-md"> <i class="fas fa-edit"></i> Update</a>
-                                        <a href="php/delete.php?id=<?= $rows['id'] ?>" class="btn btn-danger btn-md"> <i class="fas fa-minus-circle"></i> Delete</a>
+                                    <div class="d-grid gap-2">
+                                        <a href="update.php?id=<?= $rows['id'] ?>" class="btn btn-success "> <i class="fas fa-edit"></i> Update</a>
+                                        <a href="php/delete.php?id=<?= $rows['id'] ?>" class="btn btn-danger "> <i class="fas fa-minus-circle"></i> Delete</a>
                                     </div>
                                 </td>
                             </tr>

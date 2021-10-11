@@ -4,7 +4,7 @@
 
 
 <body>
-<?php include "resource/env/navbar.php"; ?>
+<?php include "resource/navbar.php"; ?>
 
 	<div class="container">
 		<div class="my-4">
