@@ -11,10 +11,7 @@
             <a href="approve" class="nav-link">อนุมัติ</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="borrow" class="nav-link">ตรวจสอบยังไม่คืน</a>
-        </li>
-        <li class="nav-item d-none d-sm-inline-block">
-            <a href="return" class="nav-link">ตรวจสอบการคืน</a>
+            <a href="check_borrow" class="nav-link">ตรวจสอบยืม&คืน</a>
         </li>
     </ul>
 

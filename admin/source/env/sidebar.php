@@ -46,27 +46,15 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="approve" class="nav-link">
+                            <a href="check_borrow" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>ตรวจสอบยังไม่คืน</p>
+                                <p>ตรวจสอบยืม&คืน</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="admin_borrow" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>ตรวจสอบการคืน</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>ยืม</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>คืน</p>
+                                <p>ยืมพัสดุ&ครุภัณฑ์</p>
                             </a>
                         </li>
                     </ul>
