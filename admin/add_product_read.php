@@ -17,9 +17,9 @@ if (!$_SESSION['auth']) {
 
 
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
-    <div class="bg-light">
+    
     <?php include('source/env/borrow_notify.php'); ?>
-    </div>
+    
     <div class="wrapper">
 
         <!-- Preloader -->

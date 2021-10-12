@@ -1,5 +1,5 @@
 <?php
-include('source/php/read.php');
+include('source/php/manage_student.php');
 include('source/env/header.php');
 session_start();
 if (!$_SESSION['auth']) {
@@ -36,7 +36,7 @@ if (!$_SESSION['auth']) {
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">ระบบจัดการหลังบ้าน</h1>
+                            <h1 class="m-0">จัดการข้อมูลนักศึกษา</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
@@ -51,50 +51,71 @@ if (!$_SESSION['auth']) {
             <!-- Main Content -->
             <section class="content">
                 <div class="container-fluid">
+                    <div class="my-4">
+                        <a href="source/php/manage_student.php" class="btn btn-info text-white"><i class="fas fa-plus"></i> เพิ่มผู้ใช้</a>
+                    </div>
                     <div class="row">
-                        <div class="col-md-3">
-                            <!-- Widget: user widget style 1 -->
-                            <div class="card card-widget widget-user shadow-lg">
-                                <!-- Add the bg color to the header using any of the bg-* classes -->
-                                <div class="widget-user-header text-white" style="background: url('https://images.unsplash.com/photo-1633524418328-ad79c090329d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1175&q=80') center top;">
-                                    <h3 class="widget-user-username text-center">Elizabeth Pierce</h3>
-                                    <h5 class="widget-user-desc text-center">Web Designer</h5>
-                                </div>
-                                <div class="widget-user-image">
-                                    <img class="img-circle" src="../dist/img/user3-128x128.jpg" alt="User Avatar">
-                                </div>
-                                <div class="card-footer">
-                                    <div class="row">
-                                        <div class="col-sm-4 border-right">
-                                            <div class="description-block">
-                                                <h5 class="description-header">3,200</h5>
-                                                <span class="description-text">SALES</span>
+                        <?php if (mysqli_num_rows($result)) { ?>
+                            <?php
+                            $i = 0;
+                            while ($rows = mysqli_fetch_assoc($result)) {
+                                $i++; ?>
+                                <div class="col-md-3">
+                                    <!-- Widget: user widget style 1 -->
+
+                                    <div class="card card-widget widget-user shadow-lg">
+                                        <!-- Add the bg color to the header using any of the bg-* classes -->
+
+                                        <div class="widget-user-header text-white" style="background: url('https://images.unsplash.com/photo-1633524418328-ad79c090329d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1175&q=80') center top;">
+                                            <div class="float-right">
+                                                <div class="btn btn-group">
+                                                    <form action="source/php/manage_student_update.php">
+                                                        <input type="text" value="<?= $rows['id'] ?>" hidden>
+                                                        <button type="submit" class="btn btn-info btn-sm" name="submit"><i class="fas fa-edit"></i></button>
+                                                    </form>
+                                                    <a href="source/php/manage_student_delete?id=<?= $rows['id'] ?>" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+                                                </div>
                                             </div>
-                                            <!-- /.description-block -->
                                         </div>
-                                        <!-- /.col -->
-                                        <div class="col-sm-4 border-right">
-                                            <div class="description-block">
-                                                <h5 class="description-header">13,000</h5>
-                                                <span class="description-text">FOLLOWERS</span>
+                                        <div class="widget-user-image">
+                                            <img class="img-circle bg-light" src="https://cdn-icons.flaticon.com/png/512/3899/premium/3899618.png?token=exp=1634052120~hmac=c21375b5119035a774f4a0f496cfcc66" alt="User Avatar">
+                                        </div>
+                                        <div class="card-footer">
+                                            <div class="text-center my-2">
+                                                <h5 class="widget-user-desc text-center"><?php echo $rows['sname']; ?> <?php echo $rows['lname']; ?></h5>
+                                                <p class="fs-5"><?= $rows['email'] ?></p>
                                             </div>
-                                            <!-- /.description-block -->
-                                        </div>
-                                        <!-- /.col -->
-                                        <div class="col-sm-4">
-                                            <div class="description-block">
-                                                <h5 class="description-header">35</h5>
-                                                <span class="description-text">PRODUCTS</span>
+                                            <div class="row">
+                                                <div class="col-sm-4 border-right">
+                                                    <div class="description-block">
+                                                        <h5 class="description-header"><?= $rows['student_id'] ?></h5>
+                                                    </div>
+                                                    <!-- /.description-block -->
+                                                </div>
+                                                <!-- /.col -->
+                                                <div class="col-sm-4 border-right">
+                                                    <div class="description-block">
+                                                        <h5 class="description-header"><?= $rows['tel'] ?></h5>
+                                                    </div>
+                                                    <!-- /.description-block -->
+                                                </div>
+                                                <!-- /.col -->
+                                                <div class="col-sm-4">
+                                                    <div class="description-block">
+                                                        <h5 class="description-header"><?= $rows['stype'] ?></h5>
+                                                    </div>
+                                                    <!-- /.description-block -->
+                                                </div>
+                                                <!-- /.col -->
                                             </div>
-                                            <!-- /.description-block -->
+                                            <!-- /.row -->
                                         </div>
-                                        <!-- /.col -->
                                     </div>
-                                    <!-- /.row -->
+
+                                    <!-- /.widget-user -->
                                 </div>
-                            </div>
-                            <!-- /.widget-user -->
-                        </div>
+                            <?php } ?>
+                        <?php } ?>
                     </div>
                 </div>
             </section>
