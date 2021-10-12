@@ -1,5 +1,5 @@
 <?php
-include('source/php/read_approve.php');
+include('source/php/add_product.php');
 include('source/env/header.php');
 session_start();
 if (!$_SESSION['auth']) {
@@ -15,7 +15,11 @@ if (!$_SESSION['auth']) {
 }
 ?>
 
+
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+    <div class="bg-light">
+    <?php include('source/env/borrow_notify.php'); ?>
+    </div>
     <div class="wrapper">
 
         <!-- Preloader -->
@@ -37,12 +41,12 @@ if (!$_SESSION['auth']) {
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">ตรวจสอบอนุมัติ</h1>
+                            <h1 class="m-0">จัดการพัสดุ&ครุภัณฑ์</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="index">หน้าแรก</a></li>
-                                <li class="breadcrumb-item active">ตรวจสอบอนุมัติ</li>
+                                <li class="breadcrumb-item active">จัดการพัสดุ&ครุภัณฑ์</li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -53,10 +57,15 @@ if (!$_SESSION['auth']) {
             <!-- Main content -->
             <section class="content">
                 <div class="container-fluid">
+                    <!-- Add product button -->
+                    <div class="my-2">
+                        <a href="add_product" class="btn btn-info text-white"><i class="fas fa-plus"></i> เพิ่มพัสดุ/ครุภัณฑ์</a>
+                    </div>
+                    <!-- ./Add product button -->
                     <!-- TABLE-->
                     <div class="card">
                         <div class="card-header border-transparent">
-                            <h3 class="card-title">รายการรออนุมัติทั้งหมด</h3>
+                            <h3 class="card-title">รายการพัสดุ&ครุภัณฑ์</h3>
 
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -72,11 +81,14 @@ if (!$_SESSION['auth']) {
                                         <thead>
                                             <tr class="text-center">
                                                 <th>ลำดับ</th>
-                                                <th>รหัสอุปกรณ์</th>
-                                                <th>รหัสนักศึกษา</th>
-                                                <th>วันที่ยืม</th>
-                                                <th>วันที่คืน</th>
-                                                <th>สถานะ</th>
+                                                <th>ปีจัดซื้อ</th>
+                                                <th>หมายเลขวัสดุ/ครุภัณฑ์</th>
+                                                <th>ลักษณะอุปกรณ์</th>
+                                                <th>ประเภทอุปกรณ์วัสดุ</th>
+                                                <th>ชื่อรุ่น</th>
+                                                <th>สถานะอุปกรณ์</th>
+                                                <th>จัดเก็บที่</th>
+                                                <th>รูปภาพ</th>
                                                 <th>จัดการ</th>
                                             </tr>
                                         </thead>
@@ -86,33 +98,51 @@ if (!$_SESSION['auth']) {
                                             while ($rows = mysqli_fetch_assoc($result)) {
                                                 $i++; ?>
                                                 <tr>
-                                                    <th class="text-center" scope="row"><?= $i ?></th>
+                                                    <th scope="row"><?= $i ?></th>
+                                                    <td class="text-center"><?= $rows['pur_yrs'] ?></td>
                                                     <td class="text-center"><?= $rows['device_no'] ?></td>
-                                                    <td class="text-center"><?php echo $rows['student_id'] ?></td>
-                                                    <td class="text-center"><?php echo $rows['borrow_date']; ?></td>
-                                                    <td class="text-center"><?php echo $rows['return_date']; ?></td>
+                                                    <td class="text-center"><?php echo $rows['device_cat_name']; ?></td>
                                                     <td class="text-center">
                                                         <?php
-                                                        $r = $rows['borrow_status'];
-                                                        if ($r == 0) {
-                                                            $r = "รอตรวจสอบ";
-                                                            echo "<h5>" . "<span class=\"badge badge-warning\">" . $r . "</span>" . "</h5>";
-                                                        } elseif ($r == 1) {
-                                                            $r = "คืนแล้ว";
-                                                            echo "<h5>" . "<span class=\"badge badge-success\">" . $r . "</span>" . "</h5>";
+                                                        $r = $rows['device_type'];
+                                                        if ($r == 1) {
+                                                            echo "วัสดุ";
                                                         } elseif ($r == 2) {
-                                                            $r = "ยังไม่คืน";
-                                                            echo "<h5>" . "<span class=\"badge badge-danger\">" . $r . "</span>" . "</h5>";
+                                                            echo "ครุภัณฑ์";
                                                         } else {
-                                                            $r = "อื่นๆ";
-                                                            echo "<h5>" . "<span class=\"badge badge-info\">" . $r . "</span>" . "</h5>";
+                                                            echo "โปรดแก้ไขข้อมูล";
                                                         }
                                                         ?>
                                                     </td>
+                                                    <td class="text-center"><?php echo $rows['model']; ?></td>
+                                                    <td class="text-center">
+                                                        <?php
+                                                        $r = $rows['status'];
+                                                        if ($r == 0) {
+                                                            echo "โปรดแก้ไขข้อมูล";
+                                                        } elseif ($r == 1) {
+                                                            echo "ว่าง";
+                                                        } elseif ($r == 2) {
+                                                            echo "ไม่ว่าง";
+                                                        } elseif ($r == 3) {
+                                                            echo "ชำรุด";
+                                                        } else {
+                                                            echo "อื่นๆ";
+                                                        }
+                                                        ?>
+                                                    </td>
+                                                    <td class="text-center"><?php echo $rows['room']; ?></td>
+                                                    <td class="text-center">
+                                                        <?php if (!empty($rows['img'])) { ?>
+                                                            <img src="source/img/store-img/<?php echo $rows['img']; ?>" alt="Product Image" class="img-fluid" width="70px">
+                                                        <?php } else { ?>
+                                                            <img src="https://cdn-icons-png.flaticon.com/512/4076/4076478.png" alt="Product Image" class="img-fluid" width="70px">
+                                                        <?php } ?>
+                                                    </td>
                                                     <td class="text-center">
                                                         <div class="d-grid gap-2 px-3">
-                                                            <a href="update.php?id=<?= $rows['b_id'] ?>" class="btn btn-success "> <i class="fas fa-edit"></i> อนุมัติ</a>
-                                                            <a href="php/delete.php?id=<?= $rows['b_id'] ?>" class="btn btn-danger"> <i class="fas fa-minus-circle"></i> ลบ</a>
+                                                            <a href="update_product?id=<?= $rows['id'] ?>" class="btn btn-success "> <i class="fas fa-edit"></i> แก้ไข</a>
+                                                            <a href="source/php/delete_product.php?id=<?= $rows['id'] ?>" class="btn btn-danger"> <i class="fas fa-minus-circle"></i> ลบ</a>
                                                         </div>
                                                     </td>
                                                 </tr>

@@ -70,9 +70,21 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="pages/layout/top-nav.html" class="nav-link">
+                            <a href="add_product_read" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>เพิ่มข้อมูลวัสดุ&ครุภัณฑ์</p>
+                                <p>ข้อมูลวัสดุ&ครุภัณฑ์</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="manage_student" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>จัดการข้อมูลนักศึกษา</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="manage_teacher" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>จัดการข้อมูลอาจารย์</p>
                             </a>
                         </li>
                     </ul>

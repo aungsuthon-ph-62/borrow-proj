@@ -166,8 +166,8 @@ if (!$_SESSION['auth']) {
                 </div>
                 <!-- /.table-responsive -->
               <?php } else { ?>
-                <div>
-                  <img class="img-fluid" src="https://cdn-icons.flaticon.com/png/512/5445/premium/5445197.png?token=exp=1633927650~hmac=8251e5913e80a008c46d8a1f50cbcc83" alt="Error loading data table!">
+                <div class="text-center">
+                  <img class="img-fluid" src="source/img/empty.png" alt="Error loading data table!">
                 </div>
               <?php } ?>
             </div>
@@ -201,7 +201,11 @@ if (!$_SESSION['auth']) {
                     $i++; ?>
                     <li class="item">
                       <div class="product-img">
-                        <img src="https://cdn-icons-png.flaticon.com/512/4076/4076478.png" alt="Product Image" class="img-size-50">
+                        <?php if (!empty($rows['img'])) { ?>
+                          <img src="source/img/store-img/<?php echo $rows['img']; ?>" alt="Product Image" class="img-fluid" width="70px">
+                        <?php } else { ?>
+                          <img src="https://cdn-icons-png.flaticon.com/512/4076/4076478.png" alt="Product Image" class="img-fluid" width="70px">
+                        <?php } ?>
                       </div>
                       <div class="product-info">
                         <a class="product-title text-primary"><?php echo $rows['model'] ?>
@@ -247,7 +251,7 @@ if (!$_SESSION['auth']) {
             </div>
             <!-- /.card-body -->
             <div class="card-footer text-center">
-              <a href="javascript:void(0)" class="uppercase">แสดงรายละเอียดเพิ่มเติม <i class="fas fa-arrow-right"></i></a>
+              <a href="add_product_read" class="uppercase">แสดงรายละเอียดเพิ่มเติม <i class="fas fa-arrow-right"></i></a>
             </div>
             <!-- /.card-footer -->
           </div>
