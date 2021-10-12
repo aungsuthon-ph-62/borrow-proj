@@ -92,10 +92,9 @@
             </div>
 
             <div class="my-4">
-                <button type="submit" class="btn btn-primary" name="register"><i class="fas fa-plus"></i> Create</button>
-                <a href="login" class="btn btn-warning"> <i class="fas fa-arrow-left"></i> Back</a>
+                <button type="submit" class="btn btn-primary" name="register"><i class="fas fa-check"></i> สร้าง</button>
+                <a href="login" class="btn btn-danger"><i class="fas fa-chevron-left"></i> กลับ</a>
             </div>
-
         </form>
     </div>
 </body>
