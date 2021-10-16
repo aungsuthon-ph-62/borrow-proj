@@ -1,4 +1,4 @@
-<?php  
+<?php
 
 include "conn_db.php";
 
@@ -10,4 +10,3 @@ WHERE d.status = 1
 ORDER By d.id ASC";
 
 $result = mysqli_query($conn, $sql);
-

@@ -78,7 +78,7 @@ if (!$_SESSION['auth']) {
                 <div class="icon">
                   <i class="fas fa-times"></i>
                 </div>
-                <a href="#" class="small-box-footer">รายละเอียดเพิ่มเติม <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="check_borrow" class="small-box-footer">รายละเอียดเพิ่มเติม <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -93,7 +93,7 @@ if (!$_SESSION['auth']) {
                 <div class="icon">
                   <i class="fas fa-check-circle"></i>
                 </div>
-                <a href="#" class="small-box-footer">รายละเอียดเพิ่มเติม <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="check_borrow" class="small-box-footer">รายละเอียดเพิ่มเติม <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->

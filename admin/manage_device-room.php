@@ -1,5 +1,5 @@
 <?php
-include('source/php/read_approve.php');
+include('source/php/manage_device-room.php');
 include('source/env/header.php');
 session_start();
 if (!$_SESSION['auth']) {
@@ -15,11 +15,12 @@ if (!$_SESSION['auth']) {
 }
 ?>
 
-<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
-    <div class="wrapper">
 
-        <!-- Notify -->
-        <?php include "source/env/borrow_notify.php" ?>
+<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+    
+    <?php include('source/env/borrow_notify.php'); ?>
+    
+    <div class="wrapper">
 
         <!-- Preloader -->
         <?php include('source/env/preload.php') ?>
@@ -40,12 +41,12 @@ if (!$_SESSION['auth']) {
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">ตรวจสอบอนุมัติ</h1>
+                            <h1 class="m-0">จัดการห้องจัดเก็บอุปกรณ์</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="index">หน้าแรก</a></li>
-                                <li class="breadcrumb-item active">ตรวจสอบอนุมัติ</li>
+                                <li class="breadcrumb-item active">จัดการห้องจัดเก็บอุปกรณ์</li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -56,10 +57,15 @@ if (!$_SESSION['auth']) {
             <!-- Main content -->
             <section class="content">
                 <div class="container-fluid">
+                    <!-- Add product button -->
+                    <div class="my-2">
+                        <a href="manage_device-room_create" class="btn btn-info text-white"><i class="fas fa-plus"></i> เพิ่มข้อมูล</a>
+                    </div>
+                    <!-- ./Add product button -->
                     <!-- TABLE-->
                     <div class="card">
                         <div class="card-header border-transparent">
-                            <h3 class="card-title">รายการรออนุมัติทั้งหมด</h3>
+                            <h3 class="card-title">รายการห้องจัดเก็บอุปกรณ์ทั้งหมด</h3>
 
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -69,53 +75,28 @@ if (!$_SESSION['auth']) {
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body p-3">
-                            <?php if (mysqli_num_rows($result)) { ?>
+                            <?php if (mysqli_num_rows($r_result)) { ?>
                                 <div class="table-responsive">
                                     <table class="table table-borderless m-0">
                                         <thead>
                                             <tr class="text-center">
                                                 <th>ลำดับ</th>
-                                                <th>รหัสอุปกรณ์</th>
-                                                <th>รหัสนักศึกษา</th>
-                                                <th>วันที่ยืม</th>
-                                                <th>วันที่คืน</th>
-                                                <th>สถานะ</th>
+                                                <th>ห้องจัดเก็บอุปกรณ์</th>
                                                 <th>จัดการ</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php
                                             $i = 0;
-                                            while ($rows = mysqli_fetch_assoc($result)) {
+                                            while ($rows = mysqli_fetch_assoc($r_result)) {
                                                 $i++; ?>
                                                 <tr>
                                                     <th class="text-center" scope="row"><?= $i ?></th>
-                                                    <td class="text-center"><?= $rows['device_no'] ?></td>
-                                                    <td class="text-center"><?php echo $rows['student_id'] ?></td>
-                                                    <td class="text-center"><?php echo $rows['borrow_date']; ?></td>
-                                                    <td class="text-center"><?php echo $rows['return_date']; ?></td>
-                                                    <td class="text-center">
-                                                        <?php
-                                                        $r = $rows['borrow_status'];
-                                                        if ($r == 0) {
-                                                            $r = "รอตรวจสอบ";
-                                                            echo "<h5>" . "<span class=\"badge badge-warning\">" . $r . "</span>" . "</h5>";
-                                                        } elseif ($r == 1) {
-                                                            $r = "คืนแล้ว";
-                                                            echo "<h5>" . "<span class=\"badge badge-success\">" . $r . "</span>" . "</h5>";
-                                                        } elseif ($r == 2) {
-                                                            $r = "ยังไม่คืน";
-                                                            echo "<h5>" . "<span class=\"badge badge-danger\">" . $r . "</span>" . "</h5>";
-                                                        } else {
-                                                            $r = "อื่นๆ";
-                                                            echo "<h5>" . "<span class=\"badge badge-info\">" . $r . "</span>" . "</h5>";
-                                                        }
-                                                        ?>
-                                                    </td>
+                                                    <td class="text-center"><?= $rows['room'] ?></td>
                                                     <td class="text-center">
                                                         <div class="d-grid gap-2 px-3">
-                                                            <a href="approve_update.php?id=<?= $rows['b_id'] ?>" class="btn btn-success "> <i class="fas fa-edit"></i> อนุมัติ</a>
-                                                            <a href="source/php/approve_delete.php?id=<?= $rows['b_id'] ?>" class="btn btn-danger"> <i class="fas fa-minus-circle"></i> ลบ</a>
+                                                            <a href="manage_device-room_update?id=<?= $rows['id'] ?>" class="btn btn-success "> <i class="fas fa-edit"></i> แก้ไข</a>
+                                                            <a href="source/php/manage_device-room_delete.php?id=<?= $rows['id'] ?>" class="btn btn-danger"> <i class="fas fa-minus-circle"></i> ลบ</a>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -126,7 +107,7 @@ if (!$_SESSION['auth']) {
                                 <!-- /.table-responsive -->
                             <?php } else { ?>
                                 <div class="text-center">
-                                    <img class="img-fluid" src="https://cdn-icons-png.flaticon.com/512/4076/4076549.png" alt="Error loading data table!">
+                                    <img class="img-fluid" src="source/img/empty.png" alt="Error loading data table!">
                                 </div>
                             <?php } ?>
                         </div>

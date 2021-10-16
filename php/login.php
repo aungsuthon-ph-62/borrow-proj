@@ -37,12 +37,12 @@ if (isset($_POST['login'])) {
             $_SESSION['start'] = time();
             $_SESSION['expire'] = $_SESSION['start'] + (30 * 60);
 
-            if ($_SESSION['status'] == 0) {
+            if ($_SESSION['status'] == 1) {
                 $_SESSION['success_login'] = "เข้าสู่ระบบสำเร็จ!";
                 header('location: ../index');
             }
 
-            if ($_SESSION['status'] == 1) {
+            if ($_SESSION['status'] == 2) {
                 header('location: ../admin/index');
             }
         } else {

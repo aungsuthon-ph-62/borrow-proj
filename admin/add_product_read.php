@@ -116,18 +116,20 @@ if (!$_SESSION['auth']) {
                                                     </td>
                                                     <td class="text-center"><?php echo $rows['model']; ?></td>
                                                     <td class="text-center">
-                                                        <?php
+                                                    <?php
                                                         $r = $rows['status'];
-                                                        if ($r == 0) {
-                                                            echo "โปรดแก้ไขข้อมูล";
-                                                        } elseif ($r == 1) {
-                                                            echo "ว่าง";
+                                                        if ($r == 1) {
+                                                            $r = "ว่าง";
+                                                            echo "<h5>" . "<span class=\"badge badge-pill badge-success\">" . $r . "</span>" . "</h5>";
                                                         } elseif ($r == 2) {
-                                                            echo "ไม่ว่าง";
+                                                            $r = "ไม่ว่าง";
+                                                            echo "<h5>" . "<span class=\"badge badge-pill badge-warning\">" . $r . "</span>" . "</h5>";
                                                         } elseif ($r == 3) {
-                                                            echo "ชำรุด";
+                                                            $r = "ชำรุด";
+                                                            echo "<h5>" . "<span class=\"badge badge-pill badge-danger\">" . $r . "</span>" . "</h5>";
                                                         } else {
-                                                            echo "อื่นๆ";
+                                                            $r = "อื่นๆ";
+                                                            echo "<h5>" . "<span class=\"badge badge-pill badge-info\">" . $r . "</span>" . "</h5>";
                                                         }
                                                         ?>
                                                     </td>
