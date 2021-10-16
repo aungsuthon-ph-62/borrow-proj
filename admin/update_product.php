@@ -118,8 +118,9 @@
             <div class="row">
                 <div class="col-12">
                     <div class="form-group mb-4">
+                        <label for="img">รูปภาพอุปกรณ์</label>
                         <div class="input-group mb-4">
-                            <span class="input-group-text" id="img">รูปภาพอุปกรณ์</span>
+                            <span class="input-group-text" id="img"><i class="fas fa-inbox"></i></span>
                             <input type="text" class="form-control" id="img" aria-describedby="img" value="<?= $row['img']; ?>" readonly>
                         </div>
                         <div class="text-center mb-4">
@@ -129,6 +130,13 @@
                                 <img src="https://cdn-icons-png.flaticon.com/512/4076/4076478.png" alt="Product Image" class="img-fluid">
                             <?php } ?>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group mb-4">
                         <label for="img" class="form-label">แก้ไขรูปภาพ</label>
                         <input class="form-control" type="file" id="img" name="img" value="<?= $row['img']; ?>">
                     </div>

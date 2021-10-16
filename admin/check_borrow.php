@@ -18,6 +18,9 @@ if (!$_SESSION['auth']) {
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
     <div class="wrapper">
 
+        <!-- Notify -->
+        <?php include('source/env/borrow_notify.php') ?>
+
         <!-- Preloader -->
         <?php include('source/env/preload.php') ?>
         <!-- ./Preloader -->
@@ -37,7 +40,7 @@ if (!$_SESSION['auth']) {
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">ตรวจสอบการยืม&คืน</h1>
+                            <h1 class="m-0">จัดการรายการยืม&คืน</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
@@ -113,8 +116,8 @@ if (!$_SESSION['auth']) {
                                                     </td>
                                                     <td class="text-center">
                                                         <div class="d-grid gap-2 px-3">
-                                                            <a href="update_check_borrow.php?id=<?= $rows['b_id'] ?>" class="btn btn-warning"> <i class="fas fa-edit"></i> แก้ไข</a>
-                                                            <a href="php/delete.php?id=<?= $rows['b_id'] ?>" class="btn btn-danger"> <i class="fas fa-minus-circle"></i> ลบ</a>
+                                                            <a href="check_borrow_update.php?id=<?= $rows['b_id'] ?>" class="btn btn-warning"> <i class="fas fa-edit"></i> แก้ไข</a>
+                                                            <a href="source/php/check_boorow_delete.php?id=<?= $rows['b_id'] ?>" class="btn btn-danger"> <i class="fas fa-minus-circle"></i> ลบ</a>
                                                         </div>
                                                     </td>
                                                 </tr>

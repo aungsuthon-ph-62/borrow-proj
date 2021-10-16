@@ -83,10 +83,10 @@
                 <div class="col-12">
                     <label for="sel-type">กรุณาเลือกชั้นปี</label>
                     <select class="form-select" aria-label="sel-type" name="sel-type" required>
-                        <option value="1">ปี 1</option>
-                        <option value="2">ปี 2</option>
-                        <option value="3">ปี 3</option>
-                        <option value="4">ปี 4</option>
+                        <option value="ปี 1">ปี 1</option>
+                        <option value="ปี 2">ปี 2</option>
+                        <option value="ปี 3">ปี 3</option>
+                        <option value="ปี 4">ปี 4</option>
                     </select>
                 </div>
             </div>

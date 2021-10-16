@@ -16,6 +16,7 @@ if (!$_SESSION['auth']) {
 ?>
 
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+    <?php include('source/env/borrow_notify.php'); ?>
     <div class="wrapper">
         <!-- Preloader -->
         <?php include('source/env/preload.php') ?>
@@ -40,7 +41,8 @@ if (!$_SESSION['auth']) {
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item active">Home</li>
+                                <li class="breadcrumb-item "><a href="index">Home</a></li>
+                                <li class="breadcrumb-item active">จัดการข้อมูลนักศึกษา</li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -52,13 +54,13 @@ if (!$_SESSION['auth']) {
             <section class="content">
                 <div class="container-fluid">
                     <div class="my-4">
-                        <a href="source/php/manage_student.php" class="btn btn-info text-white"><i class="fas fa-plus"></i> เพิ่มผู้ใช้</a>
+                        <a href="student_create" class="btn btn-info text-white"><i class="fas fa-plus"></i> เพิ่มผู้ใช้</a>
                     </div>
                     <div class="row">
-                        <?php if (mysqli_num_rows($result)) { ?>
+                        <?php if (mysqli_num_rows($r_result)) { ?>
                             <?php
                             $i = 0;
-                            while ($rows = mysqli_fetch_assoc($result)) {
+                            while ($rows = mysqli_fetch_assoc($r_result)) {
                                 $i++; ?>
                                 <div class="col-md-3">
                                     <!-- Widget: user widget style 1 -->
@@ -68,17 +70,23 @@ if (!$_SESSION['auth']) {
 
                                         <div class="widget-user-header text-white" style="background: url('https://images.unsplash.com/photo-1633524418328-ad79c090329d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1175&q=80') center top;">
                                             <div class="float-right">
-                                                <div class="btn btn-group">
-                                                    <form action="source/php/manage_student_update.php">
-                                                        <input type="text" value="<?= $rows['id'] ?>" hidden>
-                                                        <button type="submit" class="btn btn-info btn-sm" name="submit"><i class="fas fa-edit"></i></button>
-                                                    </form>
+                                                <div class="btn-group btn-group-sm" role="group">
+                                                    <a href="update_manage_student?id=<?= $rows['id'] ?>" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></i></a>
                                                     <a href="source/php/manage_student_delete?id=<?= $rows['id'] ?>" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="widget-user-image">
-                                            <img class="img-circle bg-light" src="https://cdn-icons.flaticon.com/png/512/3899/premium/3899618.png?token=exp=1634052120~hmac=c21375b5119035a774f4a0f496cfcc66" alt="User Avatar">
+                                            <img class="img-circle bg-light position-relative" src="https://cdn-icons.flaticon.com/png/512/3899/premium/3899618.png?token=exp=1634052120~hmac=c21375b5119035a774f4a0f496cfcc66" alt="User Avatar">
+                                            <?php if ($rows['status'] == 1) { ?>
+                                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-light p-2">
+                                                    Member
+                                                </span>
+                                            <?php } else { ?>
+                                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger p-2">
+                                                    Admin
+                                                </span>
+                                            <?php } ?>
                                         </div>
                                         <div class="card-footer">
                                             <div class="text-center my-2">
@@ -88,6 +96,7 @@ if (!$_SESSION['auth']) {
                                             <div class="row">
                                                 <div class="col-sm-4 border-right">
                                                     <div class="description-block">
+                                                        <span>รหัสนักศึกษา</span>
                                                         <h5 class="description-header"><?= $rows['student_id'] ?></h5>
                                                     </div>
                                                     <!-- /.description-block -->
@@ -95,6 +104,7 @@ if (!$_SESSION['auth']) {
                                                 <!-- /.col -->
                                                 <div class="col-sm-4 border-right">
                                                     <div class="description-block">
+                                                        <span>เบอร์โทรศัพท์</span>
                                                         <h5 class="description-header"><?= $rows['tel'] ?></h5>
                                                     </div>
                                                     <!-- /.description-block -->
@@ -102,6 +112,7 @@ if (!$_SESSION['auth']) {
                                                 <!-- /.col -->
                                                 <div class="col-sm-4">
                                                     <div class="description-block">
+                                                        <span>ชั้นปี</span>
                                                         <h5 class="description-header"><?= $rows['stype'] ?></h5>
                                                     </div>
                                                     <!-- /.description-block -->

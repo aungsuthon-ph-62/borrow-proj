@@ -1,3 +1,5 @@
+<meta charset="UTF-8">
+
 <?php 
     session_start();
     include('connect_db.php');
@@ -12,20 +14,6 @@
         $student_id = mysqli_real_escape_string($conn, $_POST['student_id']);
         $tel = mysqli_real_escape_string($conn, $_POST['tel']);
         $stype = mysqli_real_escape_string($conn, $_POST['sel-type']);
-
-        if ($stype == 1) {
-            $stype = "ปี 1";
-        } elseif ($stype == 2) {
-            $stype = "ปี 2";
-        } elseif ($stype == 3) {
-            $stype = "ปี 3";
-        } elseif ($stype == 4) {
-            $stype = "ปี 4";
-        } elseif ($stype == 0) {
-            header("Location: ../register.php?error=Select is required!");
-        } else {
-            header("Location: ../register.php?error=Select is required!");
-        }
 
         $user_data = 'email=' . $email . '&password=' . $password . '&sname=' . $sname . '&lname=' . $lname . '&student_id=' . $student_id . '&stype=' . $stype;
 
@@ -68,7 +56,7 @@
             $password_enc = md5($password);
 
             $sql = "INSERT INTO student (email, password, sname, lname, student_id, tel, stype, status)
-                    VALUES ('$email', '$password_enc', '$sname', '$lname', '$student_id', '$tel', '$stype', '0')";
+                    VALUES ('$email', '$password_enc', '$sname', '$lname', '$student_id', '$tel', '$stype', '1')";
             $q_result = mysqli_query($conn, $sql);
 
             $_SESSION['inp_email'] = $email;

@@ -128,8 +128,7 @@ if (!$_SESSION['auth']) {
                                             </div>
                                             <div class="card-footer">
                                                 <div class="text-right">
-                                                    <input type="text" name="id" value="<?= $row['id'] ?>" hidden>
-                                                    <a class="btn btn-sm bg-teal disabled" href="borrow?id=<?= $rows['id'] ?>">
+                                                    <a class="btn btn-sm bg-teal" href="borrow?id=<?= $rows['id'] ?>">
                                                         <i class="fas fa-box-open"></i> ยืม
                                                     </a>
                                                 </div>

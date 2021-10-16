@@ -3,7 +3,7 @@
         Swal.fire({
             icon: 'error',
             title: 'Oops...!',
-            text: '<p class="text-light"><?php echo $_GET['error']; ?></p>',
+            text: '<?php echo $_GET['error']; ?>',
             showConfirmButton: true,
             timer: 2500
         })

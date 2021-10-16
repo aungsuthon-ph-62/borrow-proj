@@ -1,17 +1,17 @@
-<?php include "source/php/approve_update.php" ?>
+<?php include "source/php/check_borrow_update.php" ?>
 <?php include "../resource/env/header.php" ?>
 
 <body class="bg-dark">
     <div class="container d-flex justify-content-center align-items-center p-5">
         <form class="bg-light border shadow p-5 rounded" action="source/php/approve_update.php" method="post">
             <div class="my-4">
-                <h4 class="display-4 text-center">ตรวจสอบการอนุมัติ</h4>
+                <h4 class="display-4 text-center">ตรวจสอบการยืม/คืนอุปกรณ์</h4>
             </div>
 
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb fs-5">
                     <li class="breadcrumb-item"><a class="text-decoration-none" href="login.php">หน้าหลัก</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">ตรวจสอบอนุมัติ</li>
+                    <li class="breadcrumb-item active" aria-current="page">ตรวจสอบการยืม/คืนอุปกรณ์</li>
                 </ol>
             </nav>
 

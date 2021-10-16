@@ -21,5 +21,5 @@ if(isset($_GET['id'])){
    }
 
 }else {
-	header("Location: ../index.php");
+	header("Location: /borrow-proj/admin/add_product_read");
 }

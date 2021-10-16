@@ -4,13 +4,16 @@
 
 include "conn_db.php";
 
-$sql = "SELECT * FROM student";
+$r_sql = "SELECT * FROM student";
 
-$result = mysqli_query($conn, $sql);
+$r_result = mysqli_query($conn, $r_sql);
 
+// ---------- read --------------
 
-if (isset($_POST['create'])) {
-	include "../db_conn.php";
+// ---------- Create --------------
+
+if (isset($_POST['submit'])) {
+	include "conn_db.php";
 	function validate($data)
 	{
 		$data = trim($data);
@@ -19,58 +22,45 @@ if (isset($_POST['create'])) {
 		return $data;
 	}
 
-	$name = validate($_POST['name']);
-	$price = validate($_POST['price']);
-	$info = validate($_POST['info']);
-	$quantity = $_POST['quantity'];
-	
-	if (isset($_POST['fileupload'])) {
-        $fileupload = $_POST['filepload'];
-    } else {
-        $fileupload = '';
-    }
+	$sname = validate($_POST['sname']);
+	$lname = validate($_POST['lname']);
+	$email = validate($_POST['email']);
+	$password = validate($_POST['password']);
+	$student_id = validate($_POST['student_id']);
+	$tel = validate($_POST['tel']);
+	$stype = validate($_POST['stype']);
+	$status = validate($_POST['status']);
 
-	$user_data = 'name='.$name.'&price='.$price.'&info='.$info.'&quantity='.$quantity;
+	$password_enc = md5($password);
 
-	date_default_timezone_set('Asia/Bangkok');
-	$date = date("Ymd");
-
-	$numrand = (mt_rand());
-
-	$upload = $_FILES['fileupload'];
-
-	if ($upload <> '') {
-		$path = "../upload/";
-
-		$type = strchr($_FILES['fileupload'] ['name'], '.');
-
-		$newname = $date.$numrand.$type;
-		$path_copy = $path.$newname;
-		$path_link = "fileupload/".$newname;
-
-		move_uploaded_file($_FILES['fileupload'] ['tmp_name'], $path_copy);
-
-	}
-
-	if (empty($name)) {
-		header("Location: ../create.php?error=Name is required&$user_data");
-	} else if (empty($price)) {
-		header("Location: ../create.php?error=price is required&$user_data");
-	} else if (empty($info)) {
-		header("Location: ../create.php?error=info is required&$user_data");
-	} else if (empty($quantity)) {
-		header("Location: ../create.php?error=quantity is required&$user_data");
+	if (empty($sname)) {
+		header("Location: /borrow-proj/admin/student_create?error=กรุณากรอกชื่อจริง");
+	} else if (empty($lname)) {
+		header("Location: /borrow-proj/admin/student_create?error=กรุณากรอกนามสกุล");
+	} else if (empty($email)) {
+		header("Location: /borrow-proj/admin/student_create?error=กรุณากรอกอีเมลล์");
+	} else if (empty($password)) {
+		header("Location: /borrow-proj/admin/student_create?error=กรุณากรอกพาสเวิร์ด");
+	} else if (empty($tel)) {
+		header("Location: /borrow-proj/admin/student_create?error=กรุณากรอกเบอร์โทรศัพท์");
+	} else if (empty($stype)) {
+		header("Location: /borrow-proj/admin/student_create?error=กรุณากรอกชั้นปี");
+	} else if (empty($student_id)) {
+		header("Location: /borrow-proj/admin/student_create?error=กรุณากรอกรหัสนักศึกษา");
+	} else if (empty($status)) {
+		header("Location: /borrow-proj/admin/student_create?error=กรุณากรอกสถานะ");
 	} else {
-		$sql = "INSERT INTO users(name, price, info, fileupload, quantity) 
-               VALUES('$name', '$price', '$info', '$newname', '$quantity')";
-		$result = mysqli_query($conn, $sql);
-		if ($result) {
-			header("Location: ../index.php?success_create=successfully created");
+		$c_sql = "INSERT INTO student(sname, lname, email, password, student_id, tel, stype, status)
+               VALUES('$sname', '$lname', '$email', '$password_enc', '$student_id', '$tel', '$stype', '$status')";
+		$c_result = mysqli_query($conn, $c_sql);
+		if ($c_result) {
+			header("Location: /borrow-proj/admin/manage_student?success=เพิ่มข้อมูลสำเร็จ!");
 		} else {
-			header("Location: ../create.php?error=unknown error occurred&$user_data");
+			header("Location: /borrow-proj/admin/student_create?error=unknown error occurred&$user_data");
 		}
 	}
 }
+
 
 echo '
 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

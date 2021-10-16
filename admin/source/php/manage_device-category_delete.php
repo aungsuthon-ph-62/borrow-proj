@@ -11,13 +11,13 @@ if(isset($_GET['id'])){
  
 	 $d_id = validate($_GET['id']);
  
-	 $d_sql = "DELETE FROM student
+	 $d_sql = "DELETE FROM device_category
 			 WHERE id=$d_id";
 	$d_result = mysqli_query($conn, $d_sql);
 	if ($d_result) {
-		  header("Location: /borrow-proj/admin/manage_student?success_delete=ลบข้อมูลสำเร็จ!");
+		  header("Location: /borrow-proj/admin/manage_device-category?success_delete=ลบข้อมูลสำเร็จ!");
 	}else {
-	   header("Location: /borrow-proj/admin/manage_student?error=unknown error occurred del&");
+	   header("Location: /borrow-proj/admin/manage_device-category?error=unknown error occurred");
 	}
  
  }

@@ -30,7 +30,7 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item menu-open">
+                <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-table"></i>
                         <p>
@@ -54,7 +54,7 @@
                         <li class="nav-item">
                             <a href="admin_borrow" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>ยืมพัสดุ&ครุภัณฑ์</p>
+                                <p>ยืมวัสดุ&ครุภัณฑ์</p>
                             </a>
                         </li>
                     </ul>
@@ -69,6 +69,12 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="manage_borrow" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>จัดการข้อมูลยืม/คืน</p>
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a href="add_product_read" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
@@ -85,6 +91,18 @@
                             <a href="manage_teacher" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>จัดการข้อมูลอาจารย์</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="manage_device-category" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>จัดการลักษณะอุปกรณ์</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="manage_device-room" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>จัดการห้องเก็บอุปกรณ์</p>
                             </a>
                         </li>
                     </ul>
