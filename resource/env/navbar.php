@@ -11,15 +11,15 @@
             <a href="admin_borrow" class="nav-link">ยืมวัสดุ&ครุภัณฑ์</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="approve" class="nav-link">อนุมัติ</a>
+            <a href="approve" class="nav-link">รายการยืม</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="check_borrow" class="nav-link">จัดการรายการยืม&คืน</a>
+            <a href="check_borrow" class="nav-link">รายการคืน</a>
         </li>
     </ul>
 
     <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">        
+    <ul class="navbar-nav ml-auto">
         <li class="nav-item">
             <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                 <i class="fas fa-expand-arrows-alt"></i>
@@ -30,10 +30,14 @@
                 <i class="fas fa-th-large"></i>
             </a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link btn btn-outline-danger btn-sm" href="/borrow-proj/index">
-                <i class="fas fa-user"></i> เปลี่ยนเป็นผู้ใช้งาน
-            </a>
-        </li>
+        <?php if (isset($_SESSION['status'])) { ?>
+            <?php if ($_SESSION['status'] == 2) { ?>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-outline-danger btn-sm" href="/borrow-proj/admin/index">
+                        <i class="fas fa-user"></i> เปลี่ยนเป็นแอดมิน
+                    </a>
+                </li>
+            <?php } ?>
+        <?php } ?>
     </ul>
 </nav>
