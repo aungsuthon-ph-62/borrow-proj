@@ -43,7 +43,6 @@ include('resource/env/main-header.php');
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="index">หน้าแรก</a></li>
-                                <li class="breadcrumb-item active">ยืมวัสดุ&ครุภัณฑ์</li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
