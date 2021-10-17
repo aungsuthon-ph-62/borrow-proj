@@ -43,6 +43,7 @@ if (isset($_POST['login'])) {
             }
 
             if ($_SESSION['status'] == 2) {
+                $_SESSION['success_login'] = "เข้าสู่ระบบสำเร็จ!";
                 header('location: ../admin/index');
             }
         } else {

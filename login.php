@@ -8,21 +8,21 @@ session_start();
 
         <form class="bg-light border shadow p-5 rounded" action="php/login.php" method="post">
 
-            <div class="d-flex justify-content-center align-items-center mb-3">
+            <div class="d-flex justify-content-center align-items-center mb-4">
                 <img class="img-fluid me-4" src="img/Logoubu.gif" alt="UBU Logo" width="100vh">
                 <h4 class="display-4 text-center">เข้าสู่ระบบ</h4>
             </div>
 
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb fs-5">
-                    <li class="breadcrumb-item active">Login</li>
+                    <li class="breadcrumb-item active">Login <i class="fas fa-sign-in-alt"></i></li>
                 </ol>
             </nav>
 
             <hr class="my-4">
 
             <!-- Notification -->
-            <?php include("resource/login_notify.php") ?>
+            <?php include("resource/env/login_notify.php") ?>
 
             <!-- Input Form -->
             <div class="row">

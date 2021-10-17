@@ -45,7 +45,7 @@ if (!$_SESSION['auth']) {
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="index">หน้าแรก</a></li>
-                                <li class="breadcrumb-item active">ตรวจสอบการยืม&คืน</li>
+                                <li class="breadcrumb-item active">จัดการรายการยืม&คืน</li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -117,7 +117,7 @@ if (!$_SESSION['auth']) {
                                                     <td class="text-center">
                                                         <div class="d-grid gap-2 px-3">
                                                             <a href="check_borrow_update.php?id=<?= $rows['b_id'] ?>" class="btn btn-warning"> <i class="fas fa-edit"></i> แก้ไข</a>
-                                                            <a href="source/php/check_boorow_delete.php?id=<?= $rows['b_id'] ?>" class="btn btn-danger"> <i class="fas fa-minus-circle"></i> ลบ</a>
+                                                            <a href="source/php/check_borrow_delete.php?id=<?= $rows['b_id'] ?>" class="btn btn-danger"> <i class="fas fa-minus-circle"></i> ลบ</a>
                                                         </div>
                                                     </td>
                                                 </tr>

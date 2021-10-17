@@ -1,138 +1,161 @@
-<?php include "php/read.php"; ?>
-<?php include "resource/env/header.php"; ?>
-
 <?php
-
 session_start();
-
 if (!$_SESSION['auth']) {
     $_SESSION['msg'] = "คุณต้องเข้าสู่ระบบก่อน!";
     header("location: login");
 } else {
     $currentTime = time();
-        if($currentTime > $_SESSION['expire']) 
-        {
-          session_unset();
-          session_destroy();
-          header('location: login');
-        }
-      }
+    if ($currentTime > $_SESSION['expire']) {
+        session_unset();
+        session_destroy();
+        header('location: login');
+    }
+}
+
+include('php/read.php');
+include('resource/env/main-header.php');
 ?>
 
+<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+    <div class="wrapper">
+        <!-- Preloader -->
+        <?php include('resource/env/preload.php') ?>
+        <!-- ./Preloader -->
 
-<body class="dark-bg">
+        <!-- Navbar -->
+        <?php include('resource/env/navbar.php') ?>
+        <!-- /.navbar -->
 
-    <!-- Navbar -->
-    <?php 
-        include "resource/navbar.php"
-    ?>
-    <!-- ./Navbar -->
-    
+        <!-- Main Sidebar Container -->
+        <?php include('resource/env/sidebar.php') ?>
+        <!-- ./Main Sidebar Container -->
 
-    <div class="container">
-
-        <!-- Notify msg -->
-        <?php if (isset($_SESSION['success_login']) && (isset($_SESSION['user'])))  : ?>
-            
-                <div class="alert alert-success alert-dismissible fade show my-4" role="alert">
-                    <script>
-                        Swal.fire({
-                            icon: 'success',
-                            title: '<?php echo $_SESSION['success_login']; ?>',
-                            text: 'ยินดีต้อนรับ! คุณ <?php echo $_SESSION['user']; ?>',
-                            showConfirmButton: true,
-                            timer: '4000'
-                        })
-                    </script>
-                    <?php echo $_SESSION['success_login']; ?>
-                    <?php echo $_SESSION['user']; ?>
-                    <?php unset($_SESSION['success_login']); ?>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-
-        <?php endif ?>
-        <!-- ./Notify msg -->
-
-        
-        <div class="my-4">
-            <h4 class="display-4 text-white text-center">ระบบสารสนเทศเพื่อจัดการข้อมูลวัสดุและครุภัณฑ์</h4>  
-        </div>
-
-        <div class="link-right my-4">
-            <a href="create.php" class="btn btn-info text-white"><i class="fas fa-plus"></i> ยืม</a>
-        </div>
-        <?php if (mysqli_num_rows($result)) { ?>
-            <div class="table-responsive rounded">
-                <table class="table table-hover table-borderless">
-                    <thead class="table-dark">
-                        <tr>
-                            <th scope="col" class="text-center">ลำดับ</th>
-                            <th scope="col" class="text-center">ปีจัดซื้อ</th>
-                            <th scope="col" class="text-center">หมายเลขวัสดุ/ครุภัณฑ์</th>
-                            <th scope="col" class="text-center">ลักษณะอุปกรณ์</th>
-                            <th scope="col" class="text-center">ประเภทอุปกรณ์วัสดุ</th>
-                            <th scope="col" class="text-center">ชื่อรุ่น</th>
-                            <th scope="col" class="text-center">สถานะอุปกรณ์</th>
-                            <th scope="col" class="text-center">จัดเก็บที่</th>
-                            <th scope="col" class="text-center">รูปภาพ</th>
-                            <th scope="col" class="text-center">จัดการ</th>
-                        </tr>
-                    </thead>
-                    <tbody class="table-light">
-                        <?php
-                        $i = 0;
-                        while ($rows = mysqli_fetch_assoc($result)) {
-                            $i++;
-                        ?>
-                            <tr>
-                                <th scope="row"><?= $i ?></th>
-                                <td class="text-center"><?= $rows['pur_yrs'] ?></td>
-                                <td class="text-center"><?= $rows['device_no'] ?></td>
-                                <td class="text-center"><?php echo $rows['device_cat_name']; ?></td>
-                                <td class="text-center">
-                                    <?php
-                                    $r = $rows['device_type'];
-                                    if ($r == 1) {
-                                        echo "วัสดุ";
-                                    } elseif ($r == 2) {
-                                        echo "ครุภัณฑ์";
-                                    } else {
-                                        echo "โปรดแก้ไขข้อมูล";
-                                    }
-                                    ?>
-                                </td>
-                                <td class="text-center"><?php echo $rows['model']; ?></td>
-                                <td class="text-center">
-                                    <?php
-                                    $r = $rows['status'];
-                                    if ($r == 0) {
-                                        echo "โปรดแก้ไขข้อมูล";
-                                    } elseif ($r == 1) {
-                                        echo "ว่าง";
-                                    } elseif ($r == 2) {
-                                        echo "ไม่ว่าง";
-                                    } elseif ($r == 3) {
-                                        echo "ชำรุด";
-                                    } else {
-                                        echo "อื่นๆ";
-                                    }
-                                    ?>
-                                </td>
-                                <td class="text-center"><?php echo $rows['room']; ?></td>
-                                <td class="text-center"><?php echo $rows['img']; ?></td>
-                                <td class="text-center">
-                                    <div class="d-grid gap-2">
-                                        <a href="update.php?id=<?= $rows['id'] ?>" class="btn btn-success "> <i class="fas fa-edit"></i> Update</a>
-                                        <a href="php/delete.php?id=<?= $rows['id'] ?>" class="btn btn-danger "> <i class="fas fa-minus-circle"></i> Delete</a>
-                                    </div>
-                                </td>
-                            </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                <?php include('resource/env/login_notify.php'); ?>
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0">ระบบสารสนเทศเพื่อจัดการข้อมูลวัสดุ&ครุภัณฑ์</h1>
+                        </div><!-- /.col -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="index">หน้าแรก</a></li>
+                                <li class="breadcrumb-item active">ยืมวัสดุ&ครุภัณฑ์</li>
+                            </ol>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
             </div>
-        <?php } ?>
-    </div>
+            <!-- /.content-header -->
+
+            <!-- Main content -->
+            <section class="content">
+                <!-- Default box -->
+                <div class="card card-solid">
+                    <div class="card-body pb-0">
+                        <div class="row">
+                            <?php if (mysqli_num_rows($result)) { ?>
+                                <?php
+                                $i = 0;
+                                while ($rows = mysqli_fetch_assoc($result)) {
+                                    $i++;
+                                ?>
+                                    <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
+                                        <div class="card bg-dark d-flex flex-fill border border-secondary rounded-lg">
+                                            <div class="card-header text-muted border-bottom-0">
+                                                <span>
+                                                    <a href="#" class="btn btn-sm bg-navy disabled">
+                                                        <?= $i ?>
+                                                    </a>
+                                                </span>
+                                                <?php echo $rows['device_no']; ?>
+                                            </div>
+
+                                            <div class="card-body pt-0">
+                                                <div class="row">
+                                                    <div class="col-7">
+                                                        <h5 class="fw-bold"><span class="badge bg-black p-2"><?php echo $rows['model'] ?></span></h5>
+                                                        <ul class="ml-0 mb-0 fa-ul text-muted">
+                                                            <li><b>ลักษณะ:</b> <?php echo $rows['device_cat_name'] ?></li>
+                                                            <li><b>ประเภท:</b>
+                                                                <?php
+                                                                $stat_r = $rows['device_type'];
+                                                                $stat_msg = "";
+                                                                if ($stat_r == 1) {
+                                                                ?>
+                                                                    <p class="badge bg-lightblue"><?php echo $stat_msg = "วัสดุ"; ?></p>
+                                                                <?php } elseif ($stat_r == 2) { ?>
+                                                                    <p class="badge bg-olive"><?php echo $stat_msg = "ครุภัณฑ์"; ?></p>
+                                                                <?php } ?>
+                                                            </li>
+                                                        </ul>
+                                                        <ul class="ml-3 mb-0 fa-ul text-muted">
+                                                            <li class="small"><span class="fa-li"><i class="fas fa-database"></i></span> จัดเก็บที่: <?php echo $rows['room'] ?></li>
+                                                            <li class="small"><span class="fa-li"><i class="fas fa-calendar-alt"></i></span> วันที่จัดซื้อ: <?php echo $rows['pur_yrs'] ?></li>
+                                                            <li class="small">
+                                                                <span class="fa-li">
+                                                                    <i class="fas fa-question-circle"></i>
+                                                                </span>
+                                                                สถานะ:
+                                                                <?php
+                                                                $stat_r = $rows['status'];
+                                                                $stat_msg = "";
+                                                                if ($stat_r == 1) {
+                                                                ?>
+                                                                    <span class="badge badge-success"><?php echo $stat_msg = "ว่าง"; ?></span>
+                                                                <?php } elseif ($stat_r == 2) { ?>
+                                                                    <span class="badge badge-success"><?php echo $stat_msg = "ไม่ว่าง"; ?></span>
+                                                                <?php } elseif ($stat_r == 3) { ?>
+                                                                    <span class="badge badge-success"><?php echo $stat_msg = "ชำรุด"; ?></span>
+                                                                <?php } elseif ($stat_r == 4) { ?>
+                                                                    <span class="badge badge-success"><?php echo $stat_msg = "อื่นๆ"; ?></span>
+                                                                <?php } ?>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="col-5 text-center">
+                                                        <?php if (!empty($rows['img'])) { ?>
+                                                            <div class="badge bg-white">
+                                                                <img src="admin/source/img/store-img/<?php echo $rows['img']; ?>" alt="Product Image" class="img-fluid">
+                                                            </div>
+                                                        <?php } else { ?>
+                                                            <img src="https://cdn-icons-png.flaticon.com/512/4076/4076478.png" alt="Product Image" class="img-fluid">
+                                                        <?php } ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card-footer">
+                                                <div class="text-right">
+                                                    <a class="btn btn-sm bg-info" href="borrow?id=<?= $rows['id'] ?>">
+                                                        <i class="fas fa-box-open"></i> ยืม
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                <?php } ?>
+                            <?php } ?>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- /.content -->
+
+            <!-- /.content-wrapper -->
+
+            <!-- Control Sidebar -->
+            <?php include('resource/env/sidebar-right.php') ?>
+            <!-- /.control-sidebar -->
+
+            <!-- Main Footer -->
+            <?php include('resource/env/footer.php') ?>
+
+        </div>
+        <!-- ./wrapper -->
 
 </body>
 

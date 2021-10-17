@@ -3,7 +3,7 @@
 
 <body class="bg-dark">
     <div class="container d-flex justify-content-center align-items-center p-5">
-        <form class="bg-light border shadow p-5 rounded" action="source/php/approve_update.php" method="post">
+        <form class="bg-light border shadow p-5 rounded" action="source/php/check_borrow_update.php" method="post">
             <div class="my-4">
                 <h4 class="display-4 text-center">ตรวจสอบการยืม/คืนอุปกรณ์</h4>
             </div>
@@ -35,17 +35,31 @@
 
             <div class="row">
                 <div class="col-md-12 col-lg-6">
-                    <div class=" form-group mb-4">
+                    <div class="form-group mb-4">
                         <label for="device_id">รหัสอุปกรณ์ที่ยืม</label>
-                        <input type="text" class="form-control" id="device_id" name="device_id" value="<?= $row['device_no'] ?>" disabled>
-                        <input type="text" class="form-control" id="device_id" name="device_id" value="<?= $row['device_id'] ?>" hidden>
+                        <select class="form-select" aria-label="device_id" name="device_id">
+                            <option value="">-----กรุณาเลือก-----</option>
+                            <option value="<?= $row['device_id'] ?>" selected><?= $row['device_no'] ?></option>
+                            <?php foreach ($sel_result1 as $rows) { ?>
+                                <option value="<?php echo $rows['id']; ?>">
+                                    <?php echo $rows['device_no']; ?>
+                                </option>
+                            <?php } ?>
+                        </select>
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-6">
                     <div class="form-group mb-4">
-                        <label for="quantity">รหัสผู้ยืม</label>
-                        <input type="text" class="form-control" id="borrower_id" name="borrower_id" value="<?= $row['student_id'] ?>" disabled>
-                        <input type="text" class="form-control" id="borrower_id" name="borrower_id" value="<?= $row['borrower_id'] ?>" hidden>
+                        <label for="borrower_id">รหัสผู้ยืม</label>
+                        <select class="form-select" aria-label="borrower_id" name="borrower_id">
+                            <option value="">-----กรุณาเลือก-----</option>
+                            <option value="<?= $row['borrower_id'] ?>" selected><?= $row['student_id'] ?></option>
+                            <?php foreach ($sel_result2 as $rows) { ?>
+                                <option value="<?php echo $rows['id']; ?>">
+                                    <?php echo $rows['student_id']; ?>
+                                </option>
+                            <?php } ?>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -54,13 +68,13 @@
                 <div class="col-md-6">
                     <div class="form-group mb-4">
                         <label for="name">วันเดือนปีที่ยืม</label>
-                        <input type="date" class="form-control" id="borrw_date" name="borrow_date" value="<?= $row['borrow_date'] ?>" disabled>
+                        <input type="date" class="form-control" id="borrw_date" name="borrow_date" value="<?= $row['borrow_date'] ?>">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group mb-4">
                         <label for="info">วันเดือนปีที่คืน</label>
-                        <input type="date" class="form-control" id="return_date" name="return_date" value="<?= $row['return_date'] ?>" disabled>
+                        <input type="date" class="form-control" id="return_date" name="return_date" value="<?= $row['return_date'] ?>">
                     </div>
                 </div>
                 <div class="col-md-12">
@@ -68,7 +82,8 @@
                         <label for="name">ผู้อนุมัติ</label>
                         <select class="form-select mt-2" aria-label="t_approve" name="t_approve">
                             <option value="">-----กรุณาเลือก-----</option>
-                            <?php foreach ($sel_result as $rows) { ?>
+                            <option value="<?= $row['t_approve'] ?>" selected><?= $row['t_name'] ?></option>
+                            <?php foreach ($sel_result3 as $rows) { ?>
                                 <option value="<?php echo $rows['id']; ?>">
                                     <?php echo $rows['t_name']; ?>
                                 </option>
@@ -78,15 +93,23 @@
                 </div>
                 <div class="col-md-12">
                     <label for="info">สถานะ</label>
-                    <div class="form-group">
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="borrow_status" id="borrow_status" value="0" checked>
-                            <label class="form-check-label" for="borrow_status">รอตรวจสอบ</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="borrow_status" id="borrow_status" value="2">
-                            <label class="form-check-label" for="borrow_status">อนุมัติ</label>
-                        </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="borrow_status" id="borrow_status" value="NULL" <?php if ($row['borrow_status'] == 0) {
+                                                                                                                            echo 'checked';
+                                                                                                                        } ?>>
+                        <label class="form-check-label" for="borrow_status">รอตรวจสอบ</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="borrow_status" id="borrow_status" value="1" <?php if ($row['borrow_status'] == 2) {
+                                                                                                                            echo 'checked';
+                                                                                                                        } ?>>
+                        <label class="form-check-label" for="borrow_status">คืนแล้ว</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="borrow_status" id="borrow_status" value="1" <?php if ($row['borrow_status'] == 2) {
+                                                                                                                            echo 'checked';
+                                                                                                                        } ?>>
+                        <label class="form-check-label" for="borrow_status">ยังไม่คืน</label>
                     </div>
                 </div>
             </div>
@@ -95,7 +118,7 @@
 
             <div class="my-4">
                 <button type="submit" class="btn btn-primary" name="submit"><i class="fas fa-check"></i> ยืนยัน</button>
-                <a href="approve" class="btn btn-danger"><i class="fas fa-chevron-left"></i> กลับ</a>
+                <a href="check_borrow" class="btn btn-danger"><i class="fas fa-chevron-left"></i> กลับ</a>
             </div>
 
         </form>

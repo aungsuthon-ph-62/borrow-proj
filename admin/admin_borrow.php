@@ -19,7 +19,7 @@ if (!$_SESSION['auth']) {
 
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
     <div class="wrapper">
-    <?php include('source/env/borrow_notify.php'); ?>
+        <?php include('source/env/borrow_notify.php'); ?>
         <!-- Preloader -->
         <?php include('source/env/preload.php') ?>
         <!-- ./Preloader -->
@@ -68,7 +68,7 @@ if (!$_SESSION['auth']) {
                                         <div class="card bg-dark d-flex flex-fill border border-secondary rounded-lg">
                                             <div class="card-header text-muted border-bottom-0">
                                                 <span>
-                                                    <a href="#" class="btn btn-sm bg-primary disabled">
+                                                    <a href="#" class="btn btn-sm bg-navy disabled">
                                                         <?= $i ?>
                                                     </a>
                                                 </span>
@@ -78,7 +78,7 @@ if (!$_SESSION['auth']) {
                                             <div class="card-body pt-0">
                                                 <div class="row">
                                                     <div class="col-7">
-                                                        <h2 class="lead"><b><?php echo $rows['model'] ?></b></h2>
+                                                        <h5 class="fw-bold"><span class="badge bg-olive p-2"><?php echo $rows['model'] ?></span></h5>
                                                         <ul class="ml-0 mb-0 fa-ul text-muted">
                                                             <li><b>ลักษณะ:</b> <?php echo $rows['device_cat_name'] ?></li>
                                                             <li><b>ประเภท:</b>
@@ -87,9 +87,9 @@ if (!$_SESSION['auth']) {
                                                                 $stat_msg = "";
                                                                 if ($stat_r == 1) {
                                                                 ?>
-                                                                    <p class="badge badge-info"><?php echo $stat_msg = "วัสดุ"; ?></p>
+                                                                    <p class="badge bg-lightblue"><?php echo $stat_msg = "วัสดุ"; ?></p>
                                                                 <?php } elseif ($stat_r == 2) { ?>
-                                                                    <p class="badge badge-info"><?php echo $stat_msg = "ครุภัณฑ์"; ?></p>
+                                                                    <p class="badge bg-olive"><?php echo $stat_msg = "ครุภัณฑ์"; ?></p>
                                                                 <?php } ?>
                                                             </li>
                                                         </ul>
@@ -118,8 +118,10 @@ if (!$_SESSION['auth']) {
                                                         </ul>
                                                     </div>
                                                     <div class="col-5 text-center">
-                                                    <?php if (!empty($rows['img'])) { ?>
-                                                            <img src="source/img/store-img/<?php echo $rows['img']; ?>" alt="Product Image" class="img-fluid">
+                                                        <?php if (!empty($rows['img'])) { ?>
+                                                            <div class="badge bg-white">
+                                                                <img src="source/img/store-img/<?php echo $rows['img']; ?>" alt="Product Image" class="img-fluid">
+                                                            </div>
                                                         <?php } else { ?>
                                                             <img src="https://cdn-icons-png.flaticon.com/512/4076/4076478.png" alt="Product Image" class="img-fluid">
                                                         <?php } ?>
@@ -128,7 +130,7 @@ if (!$_SESSION['auth']) {
                                             </div>
                                             <div class="card-footer">
                                                 <div class="text-right">
-                                                    <a class="btn btn-sm bg-teal" href="borrow?id=<?= $rows['id'] ?>">
+                                                    <a class="btn btn-outline-light btn-sm bg-indigo" href="borrow?id=<?= $rows['id'] ?>">
                                                         <i class="fas fa-box-open"></i> ยืม
                                                     </a>
                                                 </div>

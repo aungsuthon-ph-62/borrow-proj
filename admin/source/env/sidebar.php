@@ -40,6 +40,12 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
+                            <a href="admin_borrow" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>ยืมวัสดุ&ครุภัณฑ์</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="approve" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>อนุมัติ</p>
@@ -48,13 +54,7 @@
                         <li class="nav-item">
                             <a href="check_borrow" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>ตรวจสอบยืม&คืน</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="admin_borrow" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>ยืมวัสดุ&ครุภัณฑ์</p>
+                                <p>จัดการรายการยืม&คืน</p>
                             </a>
                         </li>
                     </ul>
@@ -69,12 +69,6 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="manage_borrow" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>จัดการข้อมูลยืม/คืน</p>
-                            </a>
-                        </li>
                         <li class="nav-item">
                             <a href="add_product_read" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>

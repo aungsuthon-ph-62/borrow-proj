@@ -34,6 +34,9 @@ if (!$_SESSION['auth']) {
       <!-- Content Header (Page header) -->
       <div class="content-header">
         <div class="container-fluid">
+          <!-- Alert -->
+          <?php include "source/env/borrow_notify.php"; ?>
+          <!-- ./Alert -->
           <div class="row mb-2">
             <div class="col-sm-6">
               <h1 class="m-0">ระบบจัดการหลังบ้าน</h1>
@@ -51,23 +54,24 @@ if (!$_SESSION['auth']) {
       <!-- Main Content -->
       <section class="content">
         <div class="container-fluid">
+
           <!-- Small boxes (Stat box) -->
           <div class="row">
-            <div class="col-lg-4 col-6">
+            <div class="col-lg-3 col-6">
               <!-- small box -->
-              <div class="small-box bg-info">
-                <div class="inner">
+              <div class="small-box bg-orange text-light">
+                <div class="inner text-light">
                   <h3>150</h3>
                   <p>รออนุมัติ</p>
                 </div>
-                <div class="icon">
+                <div class="icon text-light">
                   <i class="fas fa-tasks"></i>
                 </div>
-                <a href="approve" class="small-box-footer">รายละเอียดเพิ่มเติม <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="approve" class="small-box-footer"> <span class="text-light">รายละเอียดเพิ่มเติม <i class="fas fa-arrow-circle-right"></i></span> </a>
               </div>
             </div>
             <!-- ./col -->
-            <div class="col-lg-4 col-6">
+            <div class="col-lg-3 col-6">
               <!-- small box -->
               <div class="small-box bg-danger">
                 <div class="inner">
@@ -75,37 +79,52 @@ if (!$_SESSION['auth']) {
 
                   <p>ยังไม่คืน</p>
                 </div>
-                <div class="icon">
+                <div class="icon text-light">
                   <i class="fas fa-times"></i>
                 </div>
                 <a href="check_borrow" class="small-box-footer">รายละเอียดเพิ่มเติม <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
-            <div class="col-lg-4 col-12">
+            <div class="col-lg-3 col-12">
               <!-- small box -->
-              <div class="small-box bg-success">
+              <div class="small-box bg-teal">
                 <div class="inner">
                   <h3>44</h3>
 
                   <p>คืนแล้ว</p>
                 </div>
-                <div class="icon">
+                <div class="icon text-light">
                   <i class="fas fa-check-circle"></i>
                 </div>
                 <a href="check_borrow" class="small-box-footer">รายละเอียดเพิ่มเติม <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
+            <div class="col-lg-3 col-12">
+              <!-- small box -->
+              <div class="small-box bg-indigo">
+                <div class="inner">
+                  <h3>44</h3>
+
+                  <p>อุปกรณ์ในคลัง</p>
+                </div>
+                <div class="icon text-light">
+                  <i class="fas fa-box-open"></i>
+                </div>
+                <a href="check_borrow" class="small-box-footer">รายละเอียดเพิ่มเติม <i class="fas fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+            <!-- ./col -->
+
           </div>
           <!-- /.row -->
 
 
           <!-- TABLE-->
           <div class="card">
-            <div class="card-header border-transparent">
-              <h3 class="card-title">รายการทั้งหมด <i class="fas fa-sync-alt fa-spin"></i></h3>
-
+            <div class="card-header border-transparent bg-black">
+              <h3 class="card-title text-light">รายการทั้งหมด <i class="fas fa-sync-alt fa-spin"></i></h3>
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                   <i class="fas fa-minus"></i>
@@ -120,7 +139,7 @@ if (!$_SESSION['auth']) {
               <?php if (mysqli_num_rows($result)) { ?>
                 <div class="table-responsive">
                   <table class="table m-0">
-                    <thead>
+                    <thead class="bg-secondary">
                       <tr class="text-center">
                         <th>ลำดับ</th>
                         <th>รหัสอุปกรณ์</th>
@@ -130,7 +149,7 @@ if (!$_SESSION['auth']) {
                         <th>สถานะ</th>
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="bg-dark">
                       <?php
                       $i = 0;
                       while ($rows = mysqli_fetch_assoc($result)) {
@@ -179,7 +198,7 @@ if (!$_SESSION['auth']) {
 
           <!-- PRODUCT LIST -->
           <div class="card">
-            <div class="card-header">
+            <div class="card-header bg-black">
               <h3 class="card-title">รายการวัสดุ&ครุภัณฑ์ <i class="fas fa-cubes"></i></h3>
 
               <div class="card-tools">
@@ -200,34 +219,36 @@ if (!$_SESSION['auth']) {
                   while ($rows = mysqli_fetch_assoc($device_result)) {
                     $i++; ?>
                     <li class="item">
-                      <div class="product-img">
+                      <div class="product-img badge bg-light p-3">
                         <?php if (!empty($rows['img'])) { ?>
-                          <img src="source/img/store-img/<?php echo $rows['img']; ?>" alt="Product Image" class="img-fluid" width="70px">
+                          <img src="source/img/store-img/<?php echo $rows['img']; ?>" alt="Product Image" class="img-fluid" width="100vh">
                         <?php } else { ?>
-                          <img src="https://cdn-icons-png.flaticon.com/512/4076/4076478.png" alt="Product Image" class="img-fluid" width="70px">
+                          <img src="https://cdn-icons-png.flaticon.com/512/4076/4076478.png" alt="Product Image" class="img-fluid" width="100vh">
                         <?php } ?>
                       </div>
-                      <div class="product-info">
-                        <a class="product-title text-primary"><?php echo $rows['model'] ?>
+
+                      <div class="product-info pl-5">
+                        <h5 class="product-title"><span class="badge bg-indigo"><?php echo $rows['model'] ?></span>
                           <?php
                           $stat_r = $rows['status'];
                           $stat_msg = "";
                           if ($stat_r == 1) {
                           ?>
-                            <span class="badge badge-success float-right"><?php echo $stat_msg = "ว่าง"; ?></span>
+                            <span class="badge badge-success badge-pill float-right"><?php echo $stat_msg = "ว่าง"; ?></span>
                           <?php } elseif ($stat_r == 2) { ?>
-                            <span class="badge badge-success float-right"><?php echo $stat_msg = "ไม่ว่าง"; ?></span>
+                            <span class="badge badge-warning badge-pill float-right"><?php echo $stat_msg = "ไม่ว่าง"; ?></span>
                           <?php } elseif ($stat_r == 3) { ?>
-                            <span class="badge badge-success float-right"><?php echo $stat_msg = "ชำรุด"; ?></span>
+                            <span class="badge badge-danger badge-pill float-right"><?php echo $stat_msg = "ชำรุด"; ?></span>
                           <?php } elseif ($stat_r == 4) { ?>
-                            <span class="badge badge-success float-right"><?php echo $stat_msg = "อื่นๆ"; ?></span>
+                            <span class="badge badge-info badge-pill float-right"><?php echo $stat_msg = "อื่นๆ"; ?></span>
                           <?php } ?>
-                        </a>
+                        </h5>
+
                         <span class="product-description">
-                          ลักษณะ : <?php echo $rows['device_cat_name'] ?>
+                          <b class="text-light"><i class="fas fa-bookmark"></i> ลักษณะ :</b> <?php echo $rows['device_cat_name'] ?>
                         </span>
                         <span class="product-description">
-                          ประเภท :
+                          <b class="text-light"><i class="fas fa-tag"></i> ประเภท :</b>
                           <?php
                           $r = $rows['device_type'];
                           if ($r == 1) {

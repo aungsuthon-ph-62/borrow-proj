@@ -40,7 +40,6 @@ if (isset($_GET['id'])) {
     $device_id = validate($_POST['id']);
     $borrower_id = validate($_SESSION['id']);
     $return_date = validate($_POST['return_date']);
-    
 
     date_default_timezone_set('Asia/Bangkok');
 	$date = date("Y-m-d");
