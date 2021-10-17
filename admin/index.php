@@ -1,6 +1,7 @@
 <?php
 include('source/php/read.php');
 include('source/env/header.php');
+include 'source/php/count.php';
 session_start();
 if (!$_SESSION['auth']) {
   $_SESSION['msg'] = "คุณต้องเข้าสู่ระบบก่อน!";
@@ -61,7 +62,9 @@ if (!$_SESSION['auth']) {
               <!-- small box -->
               <div class="small-box bg-orange text-light">
                 <div class="inner text-light">
-                  <h3>150</h3>
+                  <?php foreach ($count_approve_result as $rows) { ?>
+                    <h3><?php echo $rows['count_approve'] ?></h3>
+                  <?php } ?>
                   <p>รออนุมัติ</p>
                 </div>
                 <div class="icon text-light">
@@ -75,8 +78,10 @@ if (!$_SESSION['auth']) {
               <!-- small box -->
               <div class="small-box bg-danger">
                 <div class="inner">
-                  <h3>53<sup style="font-size: 20px">%</sup></h3>
-
+                  <?php include "source/php/count.php" ?>
+                  <?php foreach ($count_approve_result as $rows) { ?>
+                    <h3><?php echo $rows['count_approve'] ?></h3>
+                  <?php } ?>
                   <p>ยังไม่คืน</p>
                 </div>
                 <div class="icon text-light">
@@ -105,8 +110,9 @@ if (!$_SESSION['auth']) {
               <!-- small box -->
               <div class="small-box bg-indigo">
                 <div class="inner">
-                  <h3>44</h3>
-
+                  <?php foreach ($count_result as $rows) { ?>
+                    <h3><?php echo $rows['count_id'] ?></h3>
+                  <?php } ?>
                   <p>อุปกรณ์ในคลัง</p>
                 </div>
                 <div class="icon text-light">
