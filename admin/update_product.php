@@ -68,8 +68,14 @@
                         <label for="device_type">ประเภทอุปกรณ์</label>
                         <select class="form-control" aria-label="device_type" name="device_type">
                             <option value="">--กรุณาเลือก--</option>
-                            <option value="<?= $row['device_type']; ?>" selected><?= $row['device_type']; ?></option>
-                            <option value="1">พัสดุ</option>
+                            <?php if ((isset($row['device_type']))) { ?>
+                                <?php if ($row['device_type'] == 1) { ?>
+                                    <option value="<?= $row['device_type'] ?>" selected>วัสดุ</option>
+                                <?php } else { ?>
+                                    <option value="<?= $row['device_type'] ?>" selected>ครุภัณฑ์</option>
+                                <?php } ?>
+                            <?php } ?>
+                            <option value="1">วัสดุ</option>
                             <option value="2">ครุภัณฑ์</option>
                         </select>
                     </div>
@@ -82,7 +88,17 @@
                         <label for="status">สถานะ</label>
                         <select class="form-control" aria-label="status" name="status">
                             <option value="">--กรุณาเลือก--</option>
-                            <option value="<?= $row['status']; ?>" selected><?= $row['status']; ?></option>
+                            <?php if ((isset($row['status']))) { ?>
+                                <?php if ($row['status'] == 1) { ?>
+                                    <option value="<?= $row['status'] ?>" selected>ว่าง</option>
+                                <?php } elseif ($row['status'] == 2) { ?>
+                                    <option value="<?= $row['status'] ?>" selected>ไม่ว่าง</option>
+                                <?php } elseif ($row['status'] == 3) { ?>
+                                    <option value="<?= $row['status'] ?>" selected>ชำรุด</option>
+                                <?php } elseif ($row['status'] == 4) { ?>
+                                    <option value="<?= $row['status'] ?>" selected>อื่นๆ</option>
+                                <?php } ?>
+                            <?php } ?>
                             <option value="1">ว่าง</option>
                             <option value="2">ไม่ว่าง</option>
                             <option value="3">ชำรุด</option>

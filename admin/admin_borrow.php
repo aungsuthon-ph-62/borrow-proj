@@ -139,6 +139,10 @@ if (!$_SESSION['auth']) {
                                     </div>
 
                                 <?php } ?>
+                            <?php } else { ?>
+                                <div class="text-center">
+                                    <img src="source/img/empty.png" alt="Error loading data table" class="img-fluid">
+                                </div>
                             <?php } ?>
                         </div>
                     </div>
