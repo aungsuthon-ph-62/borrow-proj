@@ -68,7 +68,9 @@ include 'source/php/count.php';
                       <h3><?php echo $rows['count_approve'] ?></h3>
                     <?php } ?>
                   <?php } else { ?>
-                    <img class="img-fluid" src="https://cdn-icons.flaticon.com/png/512/2581/premium/2581801.png?token=exp=1634502267~hmac=bfafb9f91f4296a8b3abc1b7d5a93bf7" alt="Error loading data table!">
+                    <div class="my-2">
+                      <i class="fas fa-spinner fa-spin"></i>
+                    </div>
                   <?php } ?>
                   <p>รออนุมัติ</p>
                 </div>
@@ -88,7 +90,9 @@ include 'source/php/count.php';
                       <h3><?php echo $rows['count_approve'] ?></h3>
                     <?php } ?>
                   <?php } else { ?>
-                    <img class="img-fluid" src="https://cdn-icons.flaticon.com/png/512/2581/premium/2581801.png?token=exp=1634502267~hmac=bfafb9f91f4296a8b3abc1b7d5a93bf7" alt="Error loading data table!">
+                    <div class="my-2">
+                      <i class="fas fa-spinner fa-spin"></i>
+                    </div>
                   <?php } ?>
                   <p>ยังไม่คืน</p>
                 </div>
@@ -108,7 +112,9 @@ include 'source/php/count.php';
                       <h3><?php echo $rows['count_approve'] ?></h3>
                     <?php } ?>
                   <?php } else { ?>
-                    <img class="img-fluid" src="https://cdn-icons.flaticon.com/png/512/2581/premium/2581801.png?token=exp=1634502267~hmac=bfafb9f91f4296a8b3abc1b7d5a93bf7" alt="Error loading data table!">
+                    <div class="my-2">
+                      <i class="fas fa-spinner fa-spin"></i>
+                    </div>
                   <?php } ?>
                   <p>คืนแล้ว</p>
                 </div>
@@ -128,14 +134,16 @@ include 'source/php/count.php';
                       <h3><?php echo $rows['count_id'] ?></h3>
                     <?php } ?>
                   <?php } else { ?>
-                    <img class="img-fluid" src="https://cdn-icons.flaticon.com/png/512/2581/premium/2581801.png?token=exp=1634502267~hmac=bfafb9f91f4296a8b3abc1b7d5a93bf7" alt="Error loading data table!">
+                    <div class="my-2">
+                      <i class="fas fa-spinner fa-spin"></i>
+                    </div>
                   <?php } ?>
                   <p>อุปกรณ์ในคลัง</p>
                 </div>
                 <div class="icon text-light">
                   <i class="fas fa-box-open"></i>
                 </div>
-                <a href="check_borrow" class="small-box-footer">รายละเอียดเพิ่มเติม <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="add_product_read" class="small-box-footer">รายละเอียดเพิ่มเติม <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -144,25 +152,7 @@ include 'source/php/count.php';
 
 
           <!-- PIE CHART -->
-          <div class="card card-info">
-            <div class="card-header">
-              <h3 class="card-title">Pie Chart</h3>
-
-              <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                  <i class="fas fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-tool" data-card-widget="remove">
-                  <i class="fas fa-times"></i>
-                </button>
-              </div>
-            </div>
-            <div class="card-body bg-light">
-              <canvas id="pieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-            </div>
-            <!-- /.card-body -->
-          </div>
-          <!-- /.card -->
+          
           <!-- ./PIE CHART -->
 
 
@@ -206,8 +196,18 @@ include 'source/php/count.php';
                               <th class="text-center" scope="row"><?= $i ?></th>
                               <td class="text-center"><?= $rows['device_no'] ?></td>
                               <td class="text-center"><?php echo $rows['student_id'] ?></td>
-                              <td class="text-center"><?php echo $rows['borrow_date']; ?></td>
-                              <td class="text-center"><?php echo $rows['return_date']; ?></td>
+                              <td class="text-center">
+                                <?php
+                                $borrow_date = strtotime($rows['borrow_date']);
+                                echo date('d/m/Y', $borrow_date);
+                                ?>
+                              </td>
+                              <td class="text-center">
+                                <?php
+                                $return_date = strtotime($rows['return_date']);
+                                echo date('d/m/Y', $return_date);
+                                ?>
+                              </td>
                               <td class="text-center">
                                 <?php
                                 $r = $rows['borrow_status'];
@@ -350,56 +350,7 @@ include 'source/php/count.php';
       <!-- ./wrapper -->
     </div>
 
-    <script>
-      //-------------
-      //- DONUT CHART -
-      //-------------
-      // Get context with jQuery - using jQuery's .get() method.
-      var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
-      var donutData = {
-        labels: [
-          'Chrome',
-          'IE',
-          'FireFox',
-          'Safari',
-          'Opera',
-          'Navigator',
-        ],
-        datasets: [{
-          data: [700, 500, 400, 600, 300, 100],
-          backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
-        }]
-      }
-      var donutOptions = {
-        maintainAspectRatio: false,
-        responsive: true,
-      }
-      //Create pie or douhnut chart
-      // You can switch between pie and douhnut using the method below.
-      new Chart(donutChartCanvas, {
-        type: 'doughnut',
-        data: donutData,
-        options: donutOptions
-      })
-
-      //-------------
-      //- PIE CHART -
-      //-------------
-      // Get context with jQuery - using jQuery's .get() method.
-      var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
-      var pieData = donutData;
-      var pieOptions = {
-        maintainAspectRatio: false,
-        responsive: true,
-      }
-      //Create pie or douhnut chart
-      // You can switch between pie and douhnut using the method below.
-      new Chart(pieChartCanvas, {
-        type: 'pie',
-        data: pieData,
-        options: pieOptions
-      })
-    </script>
+    
 
 </body>
 

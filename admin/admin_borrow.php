@@ -78,7 +78,9 @@ if (!$_SESSION['auth']) {
                                             <div class="card-body pt-0">
                                                 <div class="row">
                                                     <div class="col-7">
-                                                        <h5 class="fw-bold"><span class="badge bg-olive p-2"><?php echo $rows['model'] ?></span></h5>
+                                                        <div class="bg-black rounded rounded-lg">
+                                                            <p class="font-weight-bold text-center p-2"><?php echo $rows['model'] ?></p>
+                                                        </div>
                                                         <ul class="ml-0 mb-0 fa-ul text-muted">
                                                             <li><b>ลักษณะ:</b> <?php echo $rows['device_cat_name'] ?></li>
                                                             <li><b>ประเภท:</b>
@@ -95,7 +97,12 @@ if (!$_SESSION['auth']) {
                                                         </ul>
                                                         <ul class="ml-3 mb-0 fa-ul text-muted">
                                                             <li class="small"><span class="fa-li"><i class="fas fa-database"></i></span> จัดเก็บที่: <?php echo $rows['room'] ?></li>
-                                                            <li class="small"><span class="fa-li"><i class="fas fa-calendar-alt"></i></span> วันที่จัดซื้อ: <?php echo $rows['pur_yrs'] ?></li>
+                                                            <li class="small"><span class="fa-li"><i class="fas fa-calendar-alt"></i></span> วันที่จัดซื้อ:
+                                                                <?php
+                                                                $pur_yrs = strtotime($rows['pur_yrs']);
+                                                                echo date('d/m/Y', $pur_yrs);
+                                                                ?>
+                                                            </li>
                                                             <li class="small">
                                                                 <span class="fa-li">
                                                                     <i class="fas fa-question-circle"></i>

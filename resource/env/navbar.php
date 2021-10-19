@@ -8,13 +8,13 @@
             <a href="index" class="nav-link">หน้าหลัก</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="admin_borrow" class="nav-link">ยืมวัสดุ&ครุภัณฑ์</a>
+            <a href="check_approve" class="nav-link">รายการรอตรวจสอบ</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="approve" class="nav-link">รายการยืม</a>
+            <a href="check_borrow" class="nav-link">รายการยืม</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="check_borrow" class="nav-link">รายการคืน</a>
+            <a href="check_return" class="nav-link">รายการคืน</a>
         </li>
     </ul>
 

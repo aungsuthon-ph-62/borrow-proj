@@ -1,9 +1,7 @@
 <?php
 
-session_start();
-
 if (isset($_GET['id'])) {
-    include "conn_db.php";
+    include "connect_db.php";
 
     function validate($data)
     {
@@ -25,10 +23,10 @@ if (isset($_GET['id'])) {
     if (mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
     } else {
-        header("Location: /borrow-proj/admin/admin_borrow?error=เกิดข้อผิดพลาด!");
+        header("Location: ../index?error=เกิดข้อผิดพลาด!");
     }
 } else if (isset($_POST['submit'])) {
-    include "conn_db.php";
+    include "connect_db.php";
     function validate($data)
     {
         $data = trim($data);
@@ -38,7 +36,7 @@ if (isset($_GET['id'])) {
     }
 
     $device_id = validate($_POST['id']);
-    $borrower_id = validate($_SESSION['id']);
+    $borrower_id = validate($_POST['u_id']);
     $return_date = validate($_POST['return_date']);
 
     date_default_timezone_set('Asia/Bangkok');
@@ -49,18 +47,18 @@ if (isset($_GET['id'])) {
     $t_approve = "NULL";
 
     if (empty($return_date)) {
-        header("Location: /borrow-proj/admin/borrow?id=$device_id&error=กรุณาเลือกวันคืนอุปกรณ์");
+        header("Location: ../borrow?id=$device_id&error=กรุณาเลือกวันคืนอุปกรณ์");
     } else {
         $sql = "INSERT INTO borrow_transaction(device_id, borrower_id, borrow_date, t_approve, return_date, borrow_status)
         VALUES('$device_id', '$borrower_id', '$borrow_date', '$t_approve', '$return_date', 0)";
 
         $result = mysqli_query($conn, $sql);
         if ($result) {
-            header("Location: /borrow-proj/admin/admin_borrow?success=เพิ่มคำขอสำเร็จ! กรุณารอการยืนยันข้อมูล");
+            header("Location: ../index?success=เพิ่มคำขอสำเร็จ! กรุณารอการยืนยันข้อมูล");
         } else {
-            header("Location: /borrow-proj/admin/borrow?id=$device_id&error=unknown error occurred");
+            header("Location: ../indexid=$device_id&error=unknown error occurred");
         }
     }
 } else {
-    header("Location: /borrow-proj/admin/admin_borrow?error=เกิดข้อผิดพลาด!");
+    header("Location: ../index?error=เกิดข้อผิดพลาด!");
 }

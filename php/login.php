@@ -32,6 +32,7 @@ if (isset($_POST['login'])) {
 
             $_SESSION['auth'] = true;
             $_SESSION['id'] = $row['id'];
+            $_SESSION['st_id'] = $row['student_id'];
             $_SESSION['user'] = $row['sname'] . " " . $row['lname'];
             $_SESSION['status'] = $row['status'];
             $_SESSION['start'] = time();
