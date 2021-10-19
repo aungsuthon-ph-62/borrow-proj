@@ -17,9 +17,9 @@ if (!$_SESSION['auth']) {
 
 
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
-    
+
     <?php include('source/env/borrow_notify.php'); ?>
-    
+
     <div class="wrapper">
 
         <!-- Preloader -->
@@ -99,7 +99,12 @@ if (!$_SESSION['auth']) {
                                                 $i++; ?>
                                                 <tr>
                                                     <th scope="row"><?= $i ?></th>
-                                                    <td class="text-center"><?= $rows['pur_yrs'] ?></td>
+                                                    <td class="text-center">
+                                                        <?php
+                                                        $pur_yrs = strtotime($rows['pur_yrs']);
+                                                        echo date('d/m/Y', $pur_yrs);
+                                                        ?>
+                                                    </td>
                                                     <td class="text-center"><?= $rows['device_no'] ?></td>
                                                     <td class="text-center"><?php echo $rows['device_cat_name']; ?></td>
                                                     <td class="text-center">
@@ -116,7 +121,7 @@ if (!$_SESSION['auth']) {
                                                     </td>
                                                     <td class="text-center"><?php echo $rows['model']; ?></td>
                                                     <td class="text-center">
-                                                    <?php
+                                                        <?php
                                                         $r = $rows['status'];
                                                         if ($r == 1) {
                                                             $r = "ว่าง";

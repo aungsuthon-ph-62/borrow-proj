@@ -93,9 +93,19 @@ if (!$_SESSION['auth']) {
                                                     <th class="text-center" scope="row"><?= $i ?></th>
                                                     <td class="text-center"><?= $rows['device_no'] ?></td>
                                                     <td class="text-center"><?php echo $rows['student_id'] ?></td>
-                                                    <td class="text-center"><?php echo $rows['borrow_date']; ?></td>
+                                                    <td class="text-center">
+                                                        <?php
+                                                        $borrow_date = strtotime($rows['borrow_date']);
+                                                        echo date('d/m/Y', $borrow_date);
+                                                        ?>
+                                                    </td>
                                                     <td class="text-center"><?php echo $rows['t_name']; ?></td>
-                                                    <td class="text-center"><?php echo $rows['return_date']; ?></td>
+                                                    <td class="text-center">
+                                                        <?php
+                                                        $return_date = strtotime($rows['return_date']);
+                                                        echo date('d/m/Y', $return_date);
+                                                        ?>
+                                                    </td>
                                                     <td class="text-center">
                                                         <?php
                                                         $r = $rows['borrow_status'];

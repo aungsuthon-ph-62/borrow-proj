@@ -118,7 +118,7 @@
 
 
 
-            <input type="hidden" name="hdn_img" value="<?= $row['img']; ?>">
+            
             <input type="text" name="id" value="<?= $row['id'] ?>" hidden>
 
             <div class="my-2">

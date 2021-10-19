@@ -9,8 +9,8 @@ session_start();
         <form class="bg-light border shadow p-5 rounded" action="php/login.php" method="post">
 
             <div class="d-flex justify-content-center align-items-center mb-4">
-                <img class="img-fluid me-4" src="img/Logoubu.gif" alt="UBU Logo" width="100vh">
-                <h4 class="display-4 text-center">เข้าสู่ระบบ</h4>
+                <img class="img-fluid me-md-4" src="img/Logoubu.gif" alt="UBU Logo" width="100vh">
+                <h4 class="display-4 text-center text-nowrap">เข้าสู่ระบบ</h4>
             </div>
 
             <nav aria-label="breadcrumb">
@@ -46,8 +46,10 @@ session_start();
 
 
             <div class="row align-items-center">
-                <div class="col-sm-12 col-md-auto my-2">
+                <div class="col-12 col-md-auto my-2">
                     <button type="submit" class="btn btn-success" name="login"><i class="fas fa-lock"></i> ล็อกอิน</button>
+                </div>
+                <div class="col-12 col-md-auto my-2">
                     <a href="register" class="btn btn-info text-light"><i class="far fa-address-card"></i> สมัครสมาชิก</a>
                 </div>
             </div>

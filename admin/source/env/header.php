@@ -32,10 +32,3 @@
 <script src="/borrow-proj/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/borrow-proj/admin/dist/js/adminlte.min.js"></script>
-<!-- ChartJS -->
-<script src="../../plugins/chart.js/Chart.min.js"></script>
-<!-- AdminLTE App -->
-<script src="/borrow-proj/admin/dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="/borrow-proj/admin/dist/js/demo.js"></script>
-<!-- Page specific script -->

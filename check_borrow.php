@@ -1,6 +1,4 @@
 <?php
-include('source/php/read_approve.php');
-include('source/env/header.php');
 session_start();
 if (!$_SESSION['auth']) {
     $_SESSION['msg'] = "คุณต้องเข้าสู่ระบบก่อน!";
@@ -13,54 +11,39 @@ if (!$_SESSION['auth']) {
         header('location: ../login');
     }
 }
+
+include('php/check_borrow_read.php');
+include('resource/env/main-header.php');
 ?>
 
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
     <div class="wrapper">
 
         <!-- Notify -->
-        <?php include "source/env/borrow_notify.php" ?>
+        <?php include "resource/env/login_notify.php" ?>
 
         <!-- Preloader -->
-        <?php include('source/env/preload.php') ?>
+        <?php include('resource/env/preload.php') ?>
         <!-- ./Preloader -->
 
         <!-- Navbar -->
-        <?php include('source/env/navbar.php') ?>
+        <?php include('resource/env/navbar.php') ?>
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        <?php include('source/env/sidebar.php') ?>
+        <?php include('resource/env/sidebar.php') ?>
         <!-- ./Main Sidebar Container -->
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            <div class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1 class="m-0">ตรวจสอบอนุมัติ</h1>
-                        </div><!-- /.col -->
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="index">หน้าแรก</a></li>
-                                <li class="breadcrumb-item active">ตรวจสอบอนุมัติ</li>
-                            </ol>
-                        </div><!-- /.col -->
-                    </div><!-- /.row -->
-                </div><!-- /.container-fluid -->
-            </div>
-            <!-- /.content-header -->
 
             <!-- Main content -->
-            <section class="content">
-                <div class="container-fluid">
+            <section class="content-header">
+                <div class="container">
                     <!-- TABLE-->
                     <div class="card">
                         <div class="card-header border-transparent">
-                            <h3 class="card-title">รายการรออนุมัติทั้งหมด</h3>
-
+                            <h3 class="card-title">รายการรอตรวจสอบ : <?= $_SESSION['user'] ?> | <?= $_SESSION['st_id'] ?> </h3>
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                     <i class="fas fa-minus"></i>
@@ -75,11 +58,10 @@ if (!$_SESSION['auth']) {
                                         <thead>
                                             <tr class="text-center">
                                                 <th>ลำดับ</th>
-                                                <th>รหัสนักศึกษา</th>
                                                 <th>วันที่ยืม</th>
                                                 <th>วันที่คืน</th>
                                                 <th>สถานะ</th>
-                                                <th>จัดการ</th>
+                                                
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -89,7 +71,6 @@ if (!$_SESSION['auth']) {
                                                 $i++; ?>
                                                 <tr>
                                                     <th class="text-center" scope="row"><?= $i ?></th>
-                                                    <td class="text-center"><?php echo $rows['student_id'] ?></td>
                                                     <td class="text-center">
                                                         <?php
                                                         $borrow_date = strtotime($rows['borrow_date']);
@@ -120,12 +101,6 @@ if (!$_SESSION['auth']) {
                                                         }
                                                         ?>
                                                     </td>
-                                                    <td class="text-center">
-                                                        <div class="d-grid gap-2 px-3">
-                                                            <a href="approve_update.php?id=<?= $rows['b_id'] ?>" class="btn btn-success "> <i class="fas fa-edit"></i> อนุมัติ</a>
-                                                            <a href="source/php/approve_delete.php?id=<?= $rows['b_id'] ?>" class="btn btn-danger"> <i class="fas fa-minus-circle"></i> ลบ</a>
-                                                        </div>
-                                                    </td>
                                                 </tr>
                                             <?php } ?>
                                         </tbody>
@@ -153,11 +128,11 @@ if (!$_SESSION['auth']) {
         <!-- /.content-wrapper -->
 
         <!-- Control Sidebar -->
-        <?php include('source/env/sidebar-right.php') ?>
+        <?php include('resource/env/sidebar-right.php') ?>
         <!-- /.control-sidebar -->
 
         <!-- Main Footer -->
-        <?php include('source/env/footer.php') ?>
+        <?php include('resource/env/footer.php') ?>
 
     </div>
     <!-- ./wrapper -->

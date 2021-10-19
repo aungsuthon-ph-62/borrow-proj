@@ -30,7 +30,7 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
-                    <a href="/borrow-proj/admin/index" class="nav-link">
+                    <a href="index" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             หน้าแรก
@@ -46,20 +46,20 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="admin_borrow" class="nav-link">
+                    <li class="nav-item">
+                            <a href="check_approve" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>ยืมวัสดุ&ครุภัณฑ์</p>
+                                <p>รายการรอตรวจสอบ</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="approve" class="nav-link">
+                            <a href="check_borrow" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>รายการยืม</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="check_borrow" class="nav-link">
+                            <a href="check_return" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>รายการคืน</p>
                             </a>
