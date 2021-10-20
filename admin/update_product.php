@@ -134,10 +134,10 @@
             <div class="row">
                 <div class="col-12">
                     <div class="form-group mb-4">
-                        <label for="img">รูปภาพอุปกรณ์</label>
                         <div class="input-group mb-4">
-                            <span class="input-group-text" id="img"><i class="fas fa-inbox"></i></span>
-                            <input type="text" class="form-control" id="img" aria-describedby="img" value="<?= $row['img']; ?>" readonly>
+                            <label for="img">รูปภาพอุปกรณ์</label>
+                            <span class="input-group-text"><i class="fas fa-hdd"></i></span>
+                            <input type="text" class="form-control" id="img" name="img" value="<?= $row['img']; ?>" readonly>
                         </div>
                         <div class="text-center mb-4">
                             <?php if (!empty($row['img'])) { ?>

@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index" class="brand-link">
+    <a href="/admin/index.php" class="brand-link">
         <img src="https://cdn-icons-png.flaticon.com/512/906/906343.png" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">ยินดีต้อนรับ</span>
     </a>
@@ -23,7 +23,7 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
-                    <a href="/borrow-proj/admin/index" class="nav-link">
+                    <a href="/admin/index.php" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             หน้าแรก
@@ -40,19 +40,19 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="admin_borrow" class="nav-link">
+                            <a href="/admin/admin_borrow" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>ยืมวัสดุ&ครุภัณฑ์</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="approve" class="nav-link">
+                            <a href="/admin/approve" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>อนุมัติ</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="check_borrow" class="nav-link">
+                            <a href="/admin/check_borrow" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>จัดการรายการยืม&คืน</p>
                             </a>
@@ -70,31 +70,31 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="add_product_read" class="nav-link">
+                            <a href="/admin/add_product_read" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>ข้อมูลวัสดุ&ครุภัณฑ์</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="manage_student" class="nav-link">
+                            <a href="/admin/manage_student" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>จัดการข้อมูลนักศึกษา</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="manage_teacher" class="nav-link">
+                            <a href="/admin/manage_teacher" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>จัดการข้อมูลอาจารย์</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="manage_device-category" class="nav-link">
+                            <a href="/admin/manage_device-category" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>จัดการลักษณะอุปกรณ์</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="manage_device-room" class="nav-link">
+                            <a href="/admin/manage_device-room" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>จัดการห้องเก็บอุปกรณ์</p>
                             </a>
@@ -102,7 +102,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="/borrow-proj/php/logout.php" class="nav-link">
+                    <a href="../../../php/logout" class="nav-link">
                         <i class="nav-icon fas fa-sign-in-alt"></i>
                         <p>
                             ออกจากระบบ

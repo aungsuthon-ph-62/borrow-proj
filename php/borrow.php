@@ -44,13 +44,13 @@ if (isset($_GET['id'])) {
 
     $borrow_date = $date;
 
-    $t_approve = "NULL";
+    $t_approve = "0";
 
     if (empty($return_date)) {
         header("Location: ../borrow?id=$device_id&error=กรุณาเลือกวันคืนอุปกรณ์");
     } else {
         $sql = "INSERT INTO borrow_transaction(device_id, borrower_id, borrow_date, t_approve, return_date, borrow_status)
-        VALUES('$device_id', '$borrower_id', '$borrow_date', '$t_approve', '$return_date', 0)";
+        VALUES('$device_id', '$borrower_id', '$borrow_date', '$t_approve', '$return_date', '0')";
 
         $result = mysqli_query($conn, $sql);
         if ($result) {

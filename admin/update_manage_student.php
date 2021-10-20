@@ -89,6 +89,8 @@
                             <option value="ปี 2">ปี 2</option>
                             <option value="ปี 2">ปี 3</option>
                             <option value="ปี 4">ปี 4</option>
+                            <option value="ปี 3 ต่อเนื่อง">ปี 3 ต่อเนื่อง</option>
+                            <option value="ปี 4 ต่อเนื่อง">ปี 4 ต่อเนื่อง</option>
                         </select>
                     </div>
                 </div>

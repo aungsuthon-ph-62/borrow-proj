@@ -26,15 +26,15 @@ if (isset($_POST['submit'])) {
 	
 
 	if (empty($device_cat_name)) {
-		header("Location: /borrow-proj/admin/manage_device-category_create?error=กรุณากรอกชื่อจริง");
+		header("Location: ../../manage_device-category_create?error=กรุณากรอกชื่อจริง");
 	} else {
 		$c_sql = "INSERT INTO device_category(device_cat_name)
                VALUES('$device_cat_name')";
 		$c_result = mysqli_query($conn, $c_sql);
 		if ($c_result) {
-			header("Location: /borrow-proj/admin/manage_device-category?success=เพิ่มข้อมูลสำเร็จ!");
+			header("Location: ../../manage_device-category?success=เพิ่มข้อมูลสำเร็จ!");
 		} else {
-			header("Location: /borrow-proj/admin/manage_device-category_create?error=unknown error occurred");
+			header("Location: ../../manage_device-category_create?error=unknown error occurred");
 		}
 	}
 }

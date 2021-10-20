@@ -15,11 +15,11 @@ if(isset($_GET['id'])){
 	        WHERE id=$id";
    $result = mysqli_query($conn, $sql);
    if ($result) {
-   	  header("Location: /borrow-proj/admin/add_product_read?success_delete=ลบข้อมูลสำเร็จ!");
+   	  header("Location: ../../add_product_read?success_delete=ลบข้อมูลสำเร็จ!");
    }else {
-      header("Location: /borrow-proj/admin/add_product_read?error=unknown error occurred&$user_data");
+      header("Location: ../../add_product_read?error=unknown error occurred&$user_data");
    }
 
 }else {
-	header("Location: /borrow-proj/admin/add_product_read");
+	header("Location: ../../add_product_read");
 }

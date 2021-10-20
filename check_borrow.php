@@ -2,13 +2,13 @@
 session_start();
 if (!$_SESSION['auth']) {
     $_SESSION['msg'] = "คุณต้องเข้าสู่ระบบก่อน!";
-    header("location: ../login");
+    header("location: login");
 } else {
     $currentTime = time();
     if ($currentTime > $_SESSION['expire']) {
         session_unset();
         session_destroy();
-        header('location: ../login');
+        header('location: login');
     }
 }
 
@@ -43,7 +43,7 @@ include('resource/env/main-header.php');
                     <!-- TABLE-->
                     <div class="card">
                         <div class="card-header border-transparent">
-                            <h3 class="card-title">รายการรอตรวจสอบ : <?= $_SESSION['user'] ?> | <?= $_SESSION['st_id'] ?> </h3>
+                            <h3 class="card-title">รายการอนุมัติแล้ว : <?= $_SESSION['user'] ?> | <?= $_SESSION['st_id'] ?> </h3>
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                     <i class="fas fa-minus"></i>

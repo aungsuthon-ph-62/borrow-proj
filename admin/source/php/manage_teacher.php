@@ -26,15 +26,15 @@ if (isset($_POST['submit'])) {
 	
 
 	if (empty($t_name)) {
-		header("Location: /borrow-proj/admin/manage_teacher_create?error=กรุณากรอกชื่อจริง");
+		header("Location: ../../manage_teacher_create?error=กรุณากรอกชื่อจริง");
 	} else {
 		$c_sql = "INSERT INTO teacher(t_name)
                VALUES('$t_name')";
 		$c_result = mysqli_query($conn, $c_sql);
 		if ($c_result) {
-			header("Location: /borrow-proj/admin/manage_teacher?success=เพิ่มข้อมูลสำเร็จ!");
+			header("Location: ../../manage_teacher?success=เพิ่มข้อมูลสำเร็จ!");
 		} else {
-			header("Location: /borrow-proj/admin/manage_teacher_create?error=unknown error occurred");
+			header("Location: ../../manage_teacher_create?error=unknown error occurred");
 		}
 	}
 }

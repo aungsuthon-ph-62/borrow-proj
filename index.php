@@ -225,7 +225,7 @@ include('resource/env/main-header.php');
                                 <?php } ?>
                             <?php } else { ?>
                                 <div class="text-center">
-                                    <img src="source/img/empty.png" alt="Error loading data table" class="img-fluid">
+                                    <img src="admin/source/img/empty.png" alt="Error loading data table" class="img-fluid">
                                 </div>
                             <?php } ?>
                         </div>

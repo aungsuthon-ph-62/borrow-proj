@@ -2,13 +2,13 @@
 session_start();
 if (!$_SESSION['auth']) {
     $_SESSION['msg'] = "คุณต้องเข้าสู่ระบบก่อน!";
-    header("location: ../login");
+    header("location: login");
 } else {
     $currentTime = time();
     if ($currentTime > $_SESSION['expire']) {
         session_unset();
         session_destroy();
-        header('location: ../login');
+        header('location: login');
     }
 }
 

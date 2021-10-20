@@ -15,9 +15,9 @@ if(isset($_GET['id'])){
 			 WHERE id=$d_id";
 	$d_result = mysqli_query($conn, $d_sql);
 	if ($d_result) {
-		  header("Location: /borrow-proj/admin/manage_teacher?success_delete=ลบข้อมูลสำเร็จ!");
+		  header("Location: ../../manage_teacher?success_delete=ลบข้อมูลสำเร็จ!");
 	}else {
-	   header("Location: /borrow-proj/admin/manage_teacher?error=unknown error occurred");
+	   header("Location: ../../manage_teacher?error=unknown error occurred");
 	}
  
  }

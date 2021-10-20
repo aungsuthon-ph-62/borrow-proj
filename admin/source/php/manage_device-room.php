@@ -26,15 +26,15 @@ if (isset($_POST['submit'])) {
 	
 
 	if (empty($room)) {
-		header("Location: /borrow-proj/admin/manage_device-room_create?error=กรุณากรอกชื่อจริง");
+		header("Location: ../../manage_device-room_create?error=กรุณากรอกชื่อจริง");
 	} else {
 		$c_sql = "INSERT device_room(room)
                VALUES('$room')";
 		$c_result = mysqli_query($conn, $c_sql);
 		if ($c_result) {
-			header("Location: /borrow-proj/admin/manage_device-room?success=เพิ่มข้อมูลสำเร็จ!");
+			header("Location: ../../manage_device-room?success=เพิ่มข้อมูลสำเร็จ!");
 		} else {
-			header("Location: /borrow-proj/admin/manage_device-room_create?error=unknown error occurred");
+			header("Location: ../../manage_device-room_create?error=unknown error occurred");
 		}
 	}
 }

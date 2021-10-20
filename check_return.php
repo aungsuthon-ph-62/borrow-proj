@@ -43,7 +43,7 @@ include('resource/env/main-header.php');
                     <!-- TABLE-->
                     <div class="card">
                         <div class="card-header border-transparent">
-                            <h3 class="card-title">รายการรอตรวจสอบ : <?= $_SESSION['user'] ?> | <?= $_SESSION['st_id'] ?> </h3>
+                            <h3 class="card-title">รายการคืนแล้ว : <?= $_SESSION['user'] ?> | <?= $_SESSION['st_id'] ?> </h3>
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                     <i class="fas fa-minus"></i>

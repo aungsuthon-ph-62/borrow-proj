@@ -19,7 +19,7 @@ if (isset($_GET['id'])) {
     if (mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
     } else {
-        header("Location: /borrow-proj/admin/manage_student?error=เกิดข้อผิดพลาด!");
+        header("Location: ../../manage_student?error=เกิดข้อผิดพลาด!");
     }
 
 } else if (isset($_POST['submit'])) {
@@ -45,21 +45,21 @@ if (isset($_GET['id'])) {
     
 
     if (empty($sname)) {
-		header("Location: /borrow-proj/admin/update_manage_student?id=$uid&error=กรุณากรอกชื่อจริง");
+		header("Location: ../../update_manage_student?id=$uid&error=กรุณากรอกชื่อจริง");
 	} else if (empty($lname)) {
-		header("Location: /borrow-proj/admin/update_manage_student?id=$uid&error=กรุณากรอกนามสกุล");
+		header("Location: ../../update_manage_student?id=$uid&error=กรุณากรอกนามสกุล");
 	} else if (empty($email)) {
-		header("Location: /borrow-proj/admin/update_manage_student?id=$uid&error=กรุณากรอกอีเมลล์");
+		header("Location: ../../update_manage_student?id=$uid&error=กรุณากรอกอีเมลล์");
 	} else if (empty($password)) {
-		header("Location: /borrow-proj/admin/update_manage_student?id=$uid&error=กรุณากรอกพาสเวิร์ด");
+		header("Location: ../../update_manage_student?id=$uid&error=กรุณากรอกพาสเวิร์ด");
 	} else if (empty($tel)) {
-		header("Location: /borrow-proj/admin/update_manage_student?id=$uid&error=กรุณากรอกเบอร์โทรศัพท์");
+		header("Location: ../../update_manage_student?id=$uid&error=กรุณากรอกเบอร์โทรศัพท์");
 	} else if (empty($stype)) {
-		header("Location: /borrow-proj/admin/update_manage_student?id=$uid&error=กรุณากรอกชั้นปี");
+		header("Location: ../../update_manage_student?id=$uid&error=กรุณากรอกชั้นปี");
 	} else if (empty($student_id)) {
-		header("Location: /borrow-proj/admin/update_manage_student?id=$uid&error=กรุณากรอกรหัสนักศึกษา");
+		header("Location: ../../update_manage_student?id=$uid&error=กรุณากรอกรหัสนักศึกษา");
 	} else if (empty($status)) {
-		header("Location: /borrow-proj/admin/update_manage_student?id=$uid&error=กรุณากรอกสถานะ");
+		header("Location: ../../update_manage_student?id=$uid&error=กรุณากรอกสถานะ");
 	} else {
         $sql_update = "UPDATE student 
         SET student_id='$student_id', email='$email', password='$password', 
@@ -67,13 +67,13 @@ if (isset($_GET['id'])) {
         WHERE id = $uid";
         $result_update = mysqli_query($conn, $sql_update);
         if ($result_update) {
-            header("Location: /borrow-proj/admin/manage_student?success=อัพเดตข้อมูลสำเร็จ!");
+            header("Location: ../../manage_student?success=อัพเดตข้อมูลสำเร็จ!");
         } else {
-            header("Location: /borrow-proj/admin/update_manage_student?id=$uid&error=unknown error occurred");
+            header("Location: ../../update_manage_student?id=$uid&error=unknown error occurred");
         }
     }
 } else {
-    header("Location: /borrow-proj/admin/manage_student?error=เกิดข้อผิดพลาด!");
+    header("Location: ../../manage_student?error=เกิดข้อผิดพลาด!");
 }
 
 echo '

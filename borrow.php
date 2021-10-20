@@ -138,7 +138,7 @@ include('resource/env/main-header.php');
                                                     ยืม
                                                 </button>
 
-                                                <a href="index" class="btn btn-lg bg-gradient-danger ">
+                                                <a href="../index" class="btn btn-lg bg-gradient-danger ">
                                                     <i class="fas fa-arrow-left"></i>
                                                     กลับ
                                                 </a>
@@ -146,9 +146,6 @@ include('resource/env/main-header.php');
 
                                         </div>
                                     </div>
-
-
-
 
 
 
