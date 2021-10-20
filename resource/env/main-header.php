@@ -7,7 +7,7 @@
   <title>Borrow-project</title>
 
   <!-- Favicon -->
-  <link rel="shortcut icon" href="img/Logoubu.gif" type="image/png">
+  <link rel="shortcut icon" href="../../img/Logoubu.gif" type="image/png">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet">
   <!-- Font Awesome Icons -->

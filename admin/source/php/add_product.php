@@ -63,27 +63,27 @@ if (isset($_POST['submit'])) {
 	}
 
 	if (empty($pur_yrs)) {
-		header("Location: /borrow-proj/admin/add_product?error=pur_yrs is required&$user_data");
+		header("Location: ../../add_product?error=pur_yrs is required&$user_data");
 	} else if (empty($device_no)) {
-		header("Location: /borrow-proj/admin/add_product?error=device_no is required&$user_data");
+		header("Location: ../../add_product?error=device_no is required&$user_data");
 	} else if (empty($device_cat)) {
-		header("Location: /borrow-proj/admin/add_product?error=device_cat is required&$user_data");
+		header("Location: ../../add_product?error=device_cat is required&$user_data");
 	} else if (empty($device_type)) {
-		header("Location: /borrow-proj/admin/add_product?error=device_type is required&$user_data");
+		header("Location: ../../add_product?error=device_type is required&$user_data");
 	} else if (empty($status)) {
-		header("Location: /borrow-proj/admin/add_product?error=status is required&$user_data");
+		header("Location: ../../add_product?error=status is required&$user_data");
 	} else if (empty($store_at)) {
-		header("Location: /borrow-proj/admin/add_product?error=store_at is required&$user_data");
+		header("Location: ../../add_product?error=store_at is required&$user_data");
 	} else if (empty($model)) {
-		header("Location: /borrow-proj/admin/add_product?error=model is required&$user_data");
+		header("Location: ../../add_product?error=model is required&$user_data");
 	} else {
 		$sql_add = "INSERT INTO device(pur_yrs, device_no, device_cat, device_type, status, store_at, model, img) 
                VALUES('$pur_yrs', '$device_no', '$device_cat', '$device_type', '$status', '$store_at', '$model', '$newname')";
 		$result_add = mysqli_query($conn, $sql_add);
 		if ($result_add) {
-			header("Location: /borrow-proj/admin/add_product_read?success=เพิ่มข้อมูลสำเร็จ!");
+			header("Location: ../../add_product_read?success=เพิ่มข้อมูลสำเร็จ!");
 		} else {
-			header("Location: /borrow-proj/admin/add_product?error=unknown error occurred&$user_data");
+			header("Location: ../../add_product?error=unknown error occurred&$user_data");
 		}
 	}
 }

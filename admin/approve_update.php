@@ -34,6 +34,13 @@
             <?php endif ?>
 
             <div class="row">
+                <div class="col-12 p-5 text-center">
+                    <?php if (!empty($row['img'])) { ?>
+                        <img src="source/img/store-img/<?php echo $row['img']; ?>" alt="Product Image" class="img-fluid">
+                    <?php } else { ?>
+                        <img src="https://cdn-icons-png.flaticon.com/512/4076/4076478.png" alt="Product Image" class="img-fluid">
+                    <?php } ?>
+                </div>
                 <div class="col-md-12 col-lg-6">
                     <div class=" form-group mb-4">
                         <label for="device_id">รหัสอุปกรณ์ที่ยืม</label>

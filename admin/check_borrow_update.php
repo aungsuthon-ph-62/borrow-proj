@@ -94,19 +94,22 @@
                 <div class="col-md-12">
                     <label for="info">สถานะ</label>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="borrow_status" id="borrow_status" value="NULL" <?php if ($row['borrow_status'] == 0) {
-                                                                                                                            echo 'checked';
-                                                                                                                        } ?>>
+                        <input class="form-check-input" type="radio" name="borrow_status" id="borrow_status" value="0" 
+                        <?php if ($row['borrow_status'] == 0) 
+                        {
+                            echo 'checked';
+                        } ?>
+                        >                                                                                              
                         <label class="form-check-label" for="borrow_status">รอตรวจสอบ</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="borrow_status" id="borrow_status" value="1" <?php if ($row['borrow_status'] == 2) {
+                        <input class="form-check-input" type="radio" name="borrow_status" id="borrow_status" value="1" <?php if ($row['borrow_status'] == 1) {
                                                                                                                             echo 'checked';
                                                                                                                         } ?>>
                         <label class="form-check-label" for="borrow_status">คืนแล้ว</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="borrow_status" id="borrow_status" value="1" <?php if ($row['borrow_status'] == 2) {
+                        <input class="form-check-input" type="radio" name="borrow_status" id="borrow_status" value="2" <?php if ($row['borrow_status'] == 2) {
                                                                                                                             echo 'checked';
                                                                                                                         } ?>>
                         <label class="form-check-label" for="borrow_status">ยังไม่คืน</label>

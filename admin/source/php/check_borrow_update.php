@@ -34,7 +34,7 @@ if (isset($_GET['id'])) {
     if (mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
     } else {
-        header("Location: /borrow-proj/admin/check_borrow_update?error=เกิดข้อผิดพลาด!");
+        header("Location: ../../check_borrow_update?error=เกิดข้อผิดพลาด!");
     }
 } else if (isset($_POST['submit'])) {
     include "conn_db.php";
@@ -57,29 +57,29 @@ if (isset($_GET['id'])) {
 
 
     if (empty($device_id)) {
-        header("Location: /borrow-proj/admin/check_borrow_update?id=$id&error=กรุณาใส่ข้อมูลสถานะ");
+        header("Location: ../../check_borrow_update?id=$id&error=กรุณาใส่ข้อมูลสถานะ");
     } elseif (empty($borrower_id)) {
-        header("Location: /borrow-proj/admin/check_borrow_update?id=$id&error=กรุณากรอกข้อมูลรหัสผู้ยืม");
+        header("Location: ../../check_borrow_update?id=$id&error=กรุณากรอกข้อมูลรหัสผู้ยืม");
     } elseif (empty($borrow_date)) {
-        header("Location: /borrow-proj/admin/check_borrow_update?id=$id&error=กรุณากรอกข้อมูลวันที่ยืม");
+        header("Location: ../../check_borrow_update?id=$id&error=กรุณากรอกข้อมูลวันที่ยืม");
     } elseif (empty($return_date)) {
-        header("Location: /borrow-proj/admin/check_borrow_update?id=$id&error=กรุณากรอกข้อมูลวันที่คืน");
+        header("Location: ../../check_borrow_update?id=$id&error=กรุณากรอกข้อมูลวันที่คืน");
     } elseif (empty($borrow_status)) {
-        header("Location: /borrow-proj/admin/check_borrow_update?id=$id&error=กรุณากรอกข้อมูลสถานะการยืม");
+        header("Location: ../../check_borrow_update?id=$id&error=กรุณากรอกข้อมูลสถานะการยืม");
     } elseif (empty($t_approve)) {
-        header("Location: /borrow-proj/admin/check_borrow_update?id=$id&error=กรุณากรอกข้อมูลผู้อนุมัติ");
+        header("Location: ../../check_borrow_update?id=$id&error=กรุณากรอกข้อมูลผู้อนุมัติ");
     } else {
         $sql_update = "UPDATE borrow_transaction 
         SET device_id='$device_id' ,borrower_id='$borrower_id' ,borrow_date='$borrow_date' ,return_date='$return_date' ,t_approve='$t_approve' ,borrow_status='$borrow_status' WHERE b_id = $id";
         $result_update = mysqli_query($conn, $sql_update);
         if ($result_update) {
-            header("Location: /borrow-proj/admin/check_borrow?success=แก้ไขรายการสำเร็จ!");
+            header("Location: ../../check_borrow?success=แก้ไขรายการสำเร็จ!");
         } else {
-            header("Location: /borrow-proj/admin/check_borrow_update?id=$id&error=unknown error occurred");
+            header("Location: ../../check_borrow_update?id=$id&error=unknown error occurred");
         }
     }
 } else {
-    header("Location: /borrow-proj/admin/check_borrow?error=เกิดข้อผิดพลาด");
+    header("Location: ../../check_borrow?error=เกิดข้อผิดพลาด");
 }
 
 echo '

@@ -69,7 +69,17 @@
                     <div class="form-group mb-4">
                         <label for="device_type">ประเภทอุปกรณ์</label>
                         <select class="form-control" aria-label="device_type" name="device_type" disabled>
-                            <option value="<?= $row['device_type']; ?>" selected><?= $row['device_type']; ?></option>
+                            <option value="<?= $row['device_type']; ?>" selected>
+                                <?php if (isset($row['device_type'])) {
+                                    $t = $row['device_type'] ?>
+                                    <?php if ($t == 1) {
+                                        echo "วัสดุ";
+                                    } else {
+                                        echo "ครุภัณฑ์";
+                                    }
+                                    ?>
+                                <?php } ?>
+                            </option>
                         </select>
                     </div>
                 </div>
@@ -80,11 +90,21 @@
                     <div class="form-group mb-4">
                         <label for="status">สถานะ</label>
                         <select class="form-control" aria-label="status" name="status" disabled>
-                            <option value="<?= $row['status']; ?>" selected><?= $row['status']; ?></option>
-                            <option value="1">ว่าง</option>
-                            <option value="2">ไม่ว่าง</option>
-                            <option value="3">ชำรุด</option>
-                            <option value="4">อื่นๆ</option>
+                            <option value="<?= $row['status']; ?>" selected>
+                                <?php if (isset($row['status'])) {
+                                    $s = $row['status'] ?>
+                                    <?php if ($s == 1) {
+                                        echo "ว่าง";
+                                    } elseif ($s == 2) {
+                                        echo "ไม่ว่าง";
+                                    } elseif ($s == 3) {
+                                        echo "ชำรุด";
+                                    } else {
+                                        echo "อื่นๆ";
+                                    }
+                                    ?>
+                                <?php } ?>
+                            </option>
                         </select>
                     </div>
                 </div>
@@ -117,8 +137,6 @@
             </div>
 
 
-
-            
             <input type="text" name="id" value="<?= $row['id'] ?>" hidden>
 
             <div class="my-2">

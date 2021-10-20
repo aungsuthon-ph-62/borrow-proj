@@ -13,7 +13,7 @@ if (isset($_GET['id'])) {
 
     $id = validate($_GET['id']);
 
-    $sql = "SELECT b.b_id, b.device_id, d.device_no, b.borrower_id, st.student_id, b.borrow_date, b.return_date, b.borrow_status
+    $sql = "SELECT b.b_id, d.device_no, b.device_id, b.borrower_id, st.student_id, st.sname, st.lname, b.borrow_date, b.return_date, b.borrow_status, d.img
     FROM borrow_transaction as b
     INNER JOIN device as d ON d.id = b.device_id
     INNER JOIN student as st ON st.id = b.borrower_id
@@ -26,7 +26,7 @@ if (isset($_GET['id'])) {
     if (mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
     } else {
-        header("Location: /borrow-proj/admin/approve?error=เกิดข้อผิดพลาด!");
+        header("Location: ../../approve?error=เกิดข้อผิดพลาด!");
     }
 } else if (isset($_POST['submit'])) {
     include "conn_db.php";
@@ -49,21 +49,21 @@ if (isset($_GET['id'])) {
 
 
     if (empty($borrow_status)) {
-        header("Location: /borrow-proj/admin/approve_update?id=$id&error=กรุณาใส่ข้อมูลสถานะ");
+        header("Location: ../../approve_update?id=$id&error=กรุณาใส่ข้อมูลสถานะ");
     } elseif (empty($t_approve)) {
-        header("Location: /borrow-proj/admin/approve_update?id=$id&error=กรุณากรอกข้อมูลผู้อนุมัติ");
+        header("Location: ../../approve_update?id=$id&error=กรุณากรอกข้อมูลผู้อนุมัติ");
     } else {
         $sql_update = "UPDATE borrow_transaction 
         SET t_approve='$t_approve' ,borrow_status='$borrow_status' WHERE b_id = $id";
         $result_update = mysqli_query($conn, $sql_update);
         if ($result_update) {
-            header("Location: /borrow-proj/admin/approve?success=อนุมัติคำขอสำเร็จ!");
+            header("Location: ../../approve?success=อนุมัติคำขอสำเร็จ!");
         } else {
-            header("Location: /borrow-proj/admin/approve_update?id=$id&error=unknown error occurred");
+            header("Location: ../../approve_update?id=$id&error=unknown error occurred");
         }
     }
 } else {
-    header("Location: /borrow-proj/admin/approve?error=เกิดข้อผิดพลาด");
+    header("Location: ../../approve?error=เกิดข้อผิดพลาด");
 }
 
 echo '

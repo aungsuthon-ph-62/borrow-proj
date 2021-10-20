@@ -24,7 +24,7 @@ if (isset($_GET['id'])) {
     if (mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
     } else {
-        header("Location: /borrow-proj/admin/add_product_read?error=เกิดข้อผิดพลาด!");
+        header("Location: ../../add_product_read?error=เกิดข้อผิดพลาด!");
     }
 
     $sql2 = "SELECT * FROM device_category";
@@ -86,31 +86,31 @@ if (isset($_GET['id'])) {
         . '&device_type=' . $device_type . '&status=' . $status . '&store_at=' . $store_at . '&model=' . $model;
 
     if (empty($pur_yrs)) {
-        header("Location: /borrow-proj/admin/update_product?id=$p_id&error=กรุณากรอกปีที่จัดซื้อ&$user_data");
+        header("Location: ../../update_product?id=$p_id&error=กรุณากรอกปีที่จัดซื้อ&$user_data");
     } else if (empty($device_no)) {
-        header("Location: /borrow-proj/admin/update_product?id=$p_id&error=กรุณากรอกรหัสอุปกรณ์&$user_data");
+        header("Location: ../../update_product?id=$p_id&error=กรุณากรอกรหัสอุปกรณ์&$user_data");
     } else if (empty($device_cat)) {
-        header("Location: /borrow-proj/admin/update_product?id=$p_id&error=กรุณาเลือกลักษณะอุปกรณ์&$user_data");
+        header("Location: ../../update_product?id=$p_id&error=กรุณาเลือกลักษณะอุปกรณ์&$user_data");
     } else if (empty($device_type)) {
-        header("Location: /borrow-proj/admin/update_product?id=$p_id&error=กรุณาเลือกประเภทอุปกรณ์&$user_data");
+        header("Location: ../../update_product?id=$p_id&error=กรุณาเลือกประเภทอุปกรณ์&$user_data");
     } else if (empty($status)) {
-        header("Location: /borrow-proj/admin/update_product?id=$p_id&error=กรุณาเลือกสถานะอุปกรณ์&$user_data");
+        header("Location: ../../update_product?id=$p_id&error=กรุณาเลือกสถานะอุปกรณ์&$user_data");
     } else if (empty($store_at)) {
-        header("Location: /borrow-proj/admin/update_product?id=$p_id&error=กรุณาเลือกห้องที่จัดเก็บอุปกรณ์&$user_data");
+        header("Location: ../../update_product?id=$p_id&error=กรุณาเลือกห้องที่จัดเก็บอุปกรณ์&$user_data");
     } else if (empty($model)) {
-        header("Location: /borrow-proj/admin/update_product?id=$p_id&error=กรุณากรอกชื่ออุปกรณ์&$user_data");
+        header("Location: ../../update_product?id=$p_id&error=กรุณากรอกชื่ออุปกรณ์&$user_data");
     } else {
         $sql_update = "UPDATE device SET pur_yrs='$pur_yrs', device_no='$device_no', device_cat='$device_cat', 
        device_type='$device_type', status='$status', store_at='$store_at', model='$model', img='$newname' WHERE id = $p_id";
         $result_update = mysqli_query($conn, $sql_update);
         if ($result_update) {
-            header("Location: /borrow-proj/admin/add_product_read?success=อัพเดตข้อมูลสำเร็จ!");
+            header("Location: ../../add_product_read?success=อัพเดตข้อมูลสำเร็จ!");
         } else {
-            header("Location: /borrow-proj/admin/update_product?id=$p_id&error=unknown error occurred&$user_data");
+            header("Location: ../../update_product?id=$p_id&error=unknown error occurred&$user_data");
         }
     }
 } else {
-    header("Location: /borrow-proj/admin/add_product_read?error=เกิดข้อผิดพลาด!");
+    header("Location: ../../add_product_read?error=เกิดข้อผิดพลาด!");
 }
 
 echo '

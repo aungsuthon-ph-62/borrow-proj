@@ -20,9 +20,9 @@ session_start();
             </nav>
 
             <hr class="my-4">
-
             <!-- Notification -->
             <?php include("resource/env/login_notify.php") ?>
+
 
             <!-- Input Form -->
             <div class="row">

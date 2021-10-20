@@ -5,16 +5,16 @@
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="index" class="nav-link">หน้าหลัก</a>
+            <a href="/admin/index.php" class="nav-link">หน้าหลัก</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="admin_borrow" class="nav-link">ยืมวัสดุ&ครุภัณฑ์</a>
+            <a href="/admin/admin_borrow" class="nav-link">ยืมวัสดุ&ครุภัณฑ์</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="approve" class="nav-link">อนุมัติ</a>
+            <a href="/admin/approve" class="nav-link">อนุมัติ</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="check_borrow" class="nav-link">จัดการรายการยืม&คืน</a>
+            <a href="/admin/check_borrow" class="nav-link">จัดการรายการยืม&คืน</a>
         </li>
     </ul>
 
@@ -31,7 +31,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link btn btn-outline-danger btn-sm" href="/borrow-proj/index">
+            <a class="nav-link btn btn-outline-danger btn-sm" href="../../index">
                 <i class="fas fa-user"></i> เปลี่ยนเป็นผู้ใช้งาน
             </a>
         </li>

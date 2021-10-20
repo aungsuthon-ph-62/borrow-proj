@@ -4,7 +4,7 @@ $sname = "localhost";
 $uname = "root";
 $password = "";
 
-$db_name = "borrow_db";
+$db_name = "";
 
 $conn  = mysqli_connect($sname, $uname, $password, $db_name);
 

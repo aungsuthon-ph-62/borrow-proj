@@ -19,7 +19,7 @@ if (isset($_GET['id'])) {
     if (mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
     } else {
-        header("Location: /borrow-proj/admin/manage_device-room?error=เกิดข้อผิดพลาด!");
+        header("Location: ../../manage_device-room?error=เกิดข้อผิดพลาด!");
     }
 
 } else if (isset($_POST['submit'])) {
@@ -38,19 +38,19 @@ if (isset($_GET['id'])) {
     
 
     if (empty($room)) {
-		header("Location: /borrow-proj/admin/manage_device-room_update?id=$uid&error=กรุณากรอกชื่อ");
+		header("Location: ../../manage_device-room_update?id=$uid&error=กรุณากรอกชื่อ");
 	} else {
         $sql_update = "UPDATE device_room 
         SET room='$room' WHERE id = $uid";
         $result_update = mysqli_query($conn, $sql_update);
         if ($result_update) {
-            header("Location: /borrow-proj/admin/manage_device-room?success=อัพเดตข้อมูลสำเร็จ!");
+            header("Location: ../../manage_device-room?success=อัพเดตข้อมูลสำเร็จ!");
         } else {
-            header("Location: /borrow-proj/admin/manage_device-room_update?id=$uid&error=unknown error occurred");
+            header("Location: ../../manage_device-room_update?id=$uid&error=unknown error occurred");
         }
     }
 } else {
-    header("Location: /borrow-proj/admin/manage_device-room?error=เกิดข้อผิดพลาด!");
+    header("Location: ../../manage_device-room?error=เกิดข้อผิดพลาด!");
 }
 
 echo '

@@ -15,9 +15,9 @@ if(isset($_GET['id'])){
 			 WHERE b_id=$id";
 	$result = mysqli_query($conn, $sql);
 	if ($result) {
-		  header("Location: /borrow-proj/admin/check_borrow?success_delete=ลบข้อมูลสำเร็จ!");
+		  header("Location: ../../check_borrow?success_delete=ลบข้อมูลสำเร็จ!");
 	}else {
-	   header("Location: /borrow-proj/admin/check_borrow?error=unknown error occurred");
+	   header("Location: ../../check_borrow?error=unknown error occurred");
 	}
  
  }
