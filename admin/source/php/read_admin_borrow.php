@@ -7,6 +7,6 @@ FROM device as d
 INNER JOIN device_category as dc ON dc.id = d.device_cat
 INNER JOIN device_room as dr ON dr.id = d.store_at
 WHERE d.status = 1
-ORDER By d.id ASC";
+ORDER By d.id DESC";
 
 $result = mysqli_query($conn, $sql);
