@@ -12,8 +12,9 @@ if (!$_SESSION['auth']) {
   }
 }
 
-include('source/php/read.php');
+
 include('source/env/header.php');
+include('source/php/read.php');
 include 'source/php/count.php';
 ?>
 
@@ -57,8 +58,6 @@ include 'source/php/count.php';
       <section class="content">
         <div class="card">
           <div class="card-body">
-
-
             <div class="container-fluid">
 
               <!-- Small boxes (Stat box) -->
@@ -156,7 +155,12 @@ include 'source/php/count.php';
 
 
               <!-- PIE CHART -->
-
+              <div class="card">
+                <div class="card-body">
+                  <?php include "source/chart/chart.php"; ?>
+                  <div id="chart_div"></div>
+                </div>
+              </div>
               <!-- ./PIE CHART -->
 
 
